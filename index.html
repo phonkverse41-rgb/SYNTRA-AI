@@ -1,32 +1,20 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#05060a">
-<title>SYNTRA — Intelligence, Amplified.</title>
+<title>SYNTRA — Intelligence, Reimagined.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
-
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-}
-
-:root{
-  --bg:#05060a;
-  --bg2:#080a10;
-  --panel:#0b0e16;
-  --panel2:#10131d;
-  --line:rgba(255,255,255,.09);
-  --text:#f4f7ff;
-  --muted:#7d8495;
-  --accent:#7c5cff;
-  --accent2:#20d9ff;
-  --green:#55e6a5;
-  --danger:#ff667c;
 }
 
 html{
@@ -34,23 +22,13 @@ html{
 }
 
 body{
-  background:
-    radial-gradient(circle at 15% 10%,rgba(124,92,255,.13),transparent 25%),
-    radial-gradient(circle at 85% 20%,rgba(32,217,255,.08),transparent 25%),
-    var(--bg);
-  color:var(--text);
+  background:#050608;
+  color:#f5f7fb;
   font-family:Inter,sans-serif;
   overflow-x:hidden;
 }
 
-body.modal-open{
-  overflow:hidden;
-}
-
-button,
-input,
-textarea,
-select{
+button,input,textarea{
   font:inherit;
 }
 
@@ -59,8 +37,21 @@ button{
 }
 
 a{
-  color:inherit;
   text-decoration:none;
+  color:inherit;
+}
+
+:root{
+  --bg:#050608;
+  --panel:#0b0e13;
+  --panel2:#10141b;
+  --line:rgba(255,255,255,.09);
+  --text:#f5f7fb;
+  --muted:#77808f;
+  --blue:#6c8cff;
+  --cyan:#56e0ff;
+  --purple:#a87cff;
+  --green:#5cf0a5;
 }
 
 /* =========================
@@ -70,20 +61,28 @@ a{
 #particles{
   position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
+  z-index:-3;
   pointer-events:none;
-  z-index:0;
-  opacity:.8;
+}
+
+.ambient{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(108,140,255,.13),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(168,124,255,.10),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(86,224,255,.06),transparent 30%);
 }
 
 .noise{
   position:fixed;
   inset:0;
+  z-index:-1;
   pointer-events:none;
-  z-index:1;
   opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
 /* =========================
@@ -94,9 +93,9 @@ a{
   position:fixed;
   top:0;
   left:0;
-  right:0;
+  width:100%;
   height:76px;
-  padding:0 5vw;
+  padding:0 6vw;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -106,8 +105,8 @@ a{
 }
 
 .nav.scrolled{
-  background:rgba(5,6,10,.72);
-  backdrop-filter:blur(22px);
+  background:rgba(5,6,8,.78);
+  backdrop-filter:blur(20px);
   border-color:var(--line);
 }
 
@@ -116,97 +115,72 @@ a{
   align-items:center;
   gap:11px;
   font-weight:800;
-  letter-spacing:-.05em;
-  font-size:19px;
+  letter-spacing:-.04em;
+  font-size:20px;
 }
 
-.brand-mark{
+.brandmark{
   width:31px;
   height:31px;
   border-radius:9px;
+  display:grid;
+  place-items:center;
   background:
-    linear-gradient(135deg,#8b6cff,#24dfff);
-  position:relative;
-  box-shadow:0 0 30px rgba(124,92,255,.35);
-}
-
-.brand-mark:before,
-.brand-mark:after{
-  content:"";
-  position:absolute;
-  background:#05060a;
-  border-radius:50%;
-}
-
-.brand-mark:before{
-  width:7px;
-  height:7px;
-  left:7px;
-  top:8px;
-}
-
-.brand-mark:after{
-  width:7px;
-  height:7px;
-  right:7px;
-  bottom:8px;
+    linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));
+  color:#050608;
+  font-weight:900;
+  box-shadow:0 0 30px rgba(108,140,255,.3);
 }
 
 .navlinks{
   display:flex;
   gap:30px;
-  color:#9299aa;
-  font-size:12px;
 }
 
 .navlinks a{
+  color:#89919f;
+  font-size:12px;
   transition:.25s;
 }
 
 .navlinks a:hover{
-  color:#fff;
+  color:white;
 }
 
 .nav-actions{
   display:flex;
+  align-items:center;
   gap:10px;
 }
 
 .btn{
   border:1px solid var(--line);
   background:rgba(255,255,255,.035);
-  color:#fff;
-  border-radius:10px;
+  color:white;
   padding:11px 17px;
-  font-size:12px;
-  font-weight:600;
-  transition:.25s;
+  border-radius:10px;
+  font-size:11px;
+  transition:.3s;
 }
 
 .btn:hover{
+  border-color:rgba(108,140,255,.5);
   transform:translateY(-2px);
-  border-color:rgba(124,92,255,.55);
-  background:rgba(124,92,255,.1);
 }
 
 .btn.primary{
+  background:linear-gradient(135deg,var(--blue),var(--purple));
   border:0;
-  background:linear-gradient(135deg,var(--accent),#4d8dff);
-  box-shadow:0 10px 35px rgba(124,92,255,.22);
+  box-shadow:0 12px 30px rgba(108,140,255,.18);
 }
 
 .btn.primary:hover{
-  box-shadow:0 15px 45px rgba(124,92,255,.35);
+  box-shadow:0 15px 40px rgba(108,140,255,.35);
 }
 
 .mobile-menu{
   display:none;
-  border:1px solid var(--line);
-  background:none;
-  color:#fff;
-  width:42px;
-  height:42px;
-  border-radius:10px;
+  font-size:22px;
 }
 
 /* =========================
@@ -215,281 +189,226 @@ a{
 
 .hero{
   min-height:100vh;
-  position:relative;
-  z-index:2;
-  display:flex;
+  padding:160px 7vw 100px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:70px;
   align-items:center;
-  justify-content:center;
-  padding:120px 6vw 80px;
-  text-align:center;
-}
-
-.hero-inner{
-  max-width:1050px;
   position:relative;
 }
 
-.badge{
+.eyebrow{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:8px 13px;
+  padding:7px 11px;
   border:1px solid var(--line);
+  border-radius:100px;
   background:rgba(255,255,255,.025);
-  border-radius:999px;
-  color:#aab1c2;
-  font-size:11px;
-  margin-bottom:28px;
+  color:#9da7b7;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.08em;
 }
 
 .status-dot{
-  width:7px;
-  height:7px;
-  background:var(--green);
+  width:6px;
+  height:6px;
   border-radius:50%;
-  box-shadow:0 0 14px var(--green);
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 .hero h1{
-  font-size:clamp(55px,9vw,115px);
-  line-height:.92;
+  margin-top:28px;
+  font-size:clamp(58px,7.7vw,116px);
+  line-height:.91;
   letter-spacing:-.075em;
-  font-weight:800;
+  max-width:900px;
 }
 
-.gradient-text{
-  background:linear-gradient(
-    90deg,
-    #fff 0%,
-    #9d8cff 35%,
-    #46dcff 75%,
-    #fff
-  );
-  background-size:250% auto;
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,var(--cyan),var(--purple));
   -webkit-background-clip:text;
   color:transparent;
-  animation:gradientMove 6s linear infinite;
-}
-
-@keyframes gradientMove{
-  to{background-position:250% center}
 }
 
 .hero-copy{
-  max-width:650px;
-  margin:30px auto 0;
-  color:var(--muted);
+  margin-top:30px;
+  max-width:590px;
+  color:#7f8998;
   font-size:15px;
-  line-height:1.8;
+  line-height:1.9;
 }
 
-.hero-actions{
-  margin-top:34px;
+.hero-buttons{
   display:flex;
-  justify-content:center;
   gap:12px;
+  margin-top:34px;
 }
 
-.hero-actions .btn{
-  padding:15px 24px;
-}
-
-.hero-stats{
-  margin:65px auto 0;
+.hero-meta{
   display:flex;
-  justify-content:center;
-  gap:55px;
+  gap:35px;
+  margin-top:48px;
 }
 
-.hero-stat strong{
+.meta strong{
   display:block;
-  font-size:23px;
+  font-size:22px;
 }
 
-.hero-stat span{
+.meta span{
   display:block;
-  color:#666e7e;
-  font-size:10px;
   margin-top:5px;
-  font-family:"DM Mono";
+  color:#68717f;
+  font-size:9px;
+  font-family:"DM Mono",monospace;
 }
 
 /* =========================
-   ORBIT
+   AI CORE
 ========================= */
 
-.orbit{
-  width:440px;
-  height:440px;
-  position:absolute;
-  right:-250px;
-  top:25%;
-  opacity:.45;
-  pointer-events:none;
+.core-wrap{
+  position:relative;
+  min-height:540px;
+  display:grid;
+  place-items:center;
 }
 
-.orbit-ring{
+.core{
+  width:350px;
+  height:350px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+
+.core-ring{
   position:absolute;
-  inset:0;
-  border:1px solid rgba(124,92,255,.18);
+  border:1px solid rgba(108,140,255,.25);
   border-radius:50%;
-  animation:spin 18s linear infinite;
+  animation:spin 15s linear infinite;
 }
 
-.orbit-ring:nth-child(2){
-  inset:45px;
-  border-color:rgba(32,217,255,.16);
-  animation-duration:13s;
+.r1{
+  width:350px;
+  height:350px;
+}
+
+.r2{
+  width:285px;
+  height:285px;
+  border-color:rgba(86,224,255,.22);
   animation-direction:reverse;
+  animation-duration:10s;
 }
 
-.orbit-ring:nth-child(3){
-  inset:95px;
-  border-color:rgba(255,255,255,.1);
-  animation-duration:9s;
-}
-
-.orbit-core{
-  position:absolute;
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  left:175px;
-  top:175px;
-  background:
-    radial-gradient(circle at 35% 30%,#fff,#836cff 35%,#151329 70%);
-  box-shadow:
-    0 0 50px rgba(124,92,255,.5),
-    0 0 120px rgba(32,217,255,.15);
+.r3{
+  width:215px;
+  height:215px;
+  border-color:rgba(168,124,255,.3);
+  animation-duration:7s;
 }
 
 @keyframes spin{
   to{transform:rotate(360deg)}
 }
 
+.core-orb{
+  width:125px;
+  height:125px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#fff,transparent 7%),
+    radial-gradient(circle,#8bbaff 0%,#6c8cff 35%,#7a4cff 68%,transparent 72%);
+  box-shadow:
+    0 0 35px rgba(108,140,255,.8),
+    0 0 100px rgba(108,140,255,.35),
+    inset 0 0 30px white;
+  animation:pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(.96)}
+  50%{transform:scale(1.06)}
+}
+
+.core-label{
+  position:absolute;
+  bottom:20px;
+  text-align:center;
+}
+
+.core-label small{
+  display:block;
+  color:#596270;
+  font-family:"DM Mono",monospace;
+  font-size:8px;
+}
+
+.core-label strong{
+  display:block;
+  margin-top:7px;
+  font-size:13px;
+}
+
 /* =========================
-   SECTIONS
+   SECTION
 ========================= */
 
 .section{
-  position:relative;
-  z-index:3;
-  padding:120px 6vw;
+  padding:130px 7vw;
 }
 
 .section-head{
-  max-width:700px;
+  max-width:760px;
   margin-bottom:55px;
 }
 
-.eyebrow{
-  color:#8f7cff;
-  font-family:"DM Mono";
-  font-size:10px;
-  letter-spacing:.14em;
+.section-kicker{
+  color:#687384;
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  letter-spacing:.15em;
   text-transform:uppercase;
-  margin-bottom:15px;
 }
 
-.section-title{
-  font-size:clamp(35px,5vw,65px);
-  letter-spacing:-.06em;
-  line-height:1;
+.section h2{
+  margin-top:15px;
+  font-size:clamp(42px,5.2vw,78px);
+  letter-spacing:-.065em;
+  line-height:.95;
 }
 
-.section-desc{
-  color:var(--muted);
-  margin-top:18px;
+.section-head p{
+  color:#727c8b;
+  max-width:560px;
+  margin-top:20px;
   line-height:1.8;
-  font-size:14px;
+  font-size:13px;
 }
 
 /* =========================
-   CAPABILITIES
+   DASHBOARD
 ========================= */
 
-.capabilities{
-  max-width:1250px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-.cap-card{
-  min-height:260px;
-  padding:28px;
-  background:
-    linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
+.dashboard{
   border:1px solid var(--line);
-  border-radius:20px;
-  position:relative;
+  border-radius:24px;
   overflow:hidden;
-  transition:.35s;
+  background:rgba(9,12,17,.85);
+  box-shadow:0 40px 100px rgba(0,0,0,.4);
 }
 
-.cap-card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(124,92,255,.4);
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
-}
-
-.cap-icon{
-  width:46px;
-  height:46px;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:rgba(124,92,255,.1);
-  border:1px solid rgba(124,92,255,.18);
-  color:#9b89ff;
-  font-size:20px;
-  margin-bottom:45px;
-}
-
-.cap-card h3{
-  font-size:19px;
-  letter-spacing:-.03em;
-}
-
-.cap-card p{
-  margin-top:10px;
-  color:#737b8d;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.cap-number{
-  position:absolute;
-  right:25px;
-  top:25px;
-  color:#272b36;
-  font:14px "DM Mono";
-}
-
-/* =========================
-   DEMO AI
-========================= */
-
-.demo{
-  max-width:1250px;
-  margin:auto;
-  background:
-    linear-gradient(135deg,rgba(124,92,255,.08),rgba(32,217,255,.025)),
-    #090c13;
-  border:1px solid var(--line);
-  border-radius:25px;
-  overflow:hidden;
-  box-shadow:0 40px 120px rgba(0,0,0,.35);
-}
-
-.demo-top{
+.dashboard-top{
   height:58px;
+  border-bottom:1px solid var(--line);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 20px;
-  border-bottom:1px solid var(--line);
+  padding:0 18px;
 }
 
 .window-dots{
@@ -501,161 +420,350 @@ a{
   width:8px;
   height:8px;
   border-radius:50%;
-  background:#333846;
+  background:#2b313b;
 }
 
-.demo-title{
-  font:11px "DM Mono";
-  color:#737b8c;
+.dashboard-title{
+  font-family:"DM Mono",monospace;
+  font-size:9px;
+  color:#6f7886;
 }
 
-.demo-body{
-  min-height:500px;
+.dashboard-body{
   display:grid;
-  grid-template-columns:210px 1fr;
+  grid-template-columns:220px 1fr;
+  min-height:500px;
 }
 
-.demo-side{
+.sidebar{
   border-right:1px solid var(--line);
-  padding:18px;
+  padding:22px 14px;
 }
 
 .side-label{
-  font:9px "DM Mono";
-  color:#505665;
-  margin:15px 10px 9px;
+  color:#4f5866;
+  font-size:8px;
+  font-family:"DM Mono",monospace;
+  margin:10px 10px 12px;
 }
 
-.side-item{
+.side-link{
+  width:100%;
   padding:11px 12px;
-  border-radius:9px;
-  color:#737b8d;
+  border:0;
+  background:none;
+  color:#747e8c;
+  text-align:left;
+  border-radius:8px;
   font-size:11px;
-  margin-bottom:3px;
+  margin-bottom:4px;
 }
 
-.side-item.active,
-.side-item:hover{
-  background:rgba(124,92,255,.1);
-  color:#fff;
+.side-link:hover,
+.side-link.active{
+  color:white;
+  background:rgba(108,140,255,.1);
 }
 
-.demo-main{
-  padding:30px;
+.workspace{
+  padding:28px;
 }
 
-.ai-head{
+.workspace-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:25px;
 }
 
-.ai-head h3{
-  font-size:22px;
+.workspace-head h3{
+  font-size:18px;
 }
 
-.model{
-  background:#10141d;
-  border:1px solid var(--line);
-  color:#aeb5c4;
-  padding:8px 11px;
-  border-radius:8px;
-  font-size:10px;
+.live{
+  color:var(--green);
+  font-family:"DM Mono",monospace;
+  font-size:9px;
 }
 
-.chat{
-  min-height:270px;
-  max-height:270px;
-  overflow:auto;
-  padding-right:5px;
-}
-
-.message{
-  max-width:80%;
-  padding:13px 15px;
-  border:1px solid var(--line);
-  background:#0d1018;
-  border-radius:12px;
-  color:#aeb5c4;
-  font-size:12px;
-  line-height:1.7;
-  margin-bottom:12px;
-}
-
-.message.user{
-  margin-left:auto;
-  background:rgba(124,92,255,.1);
-  border-color:rgba(124,92,255,.2);
-  color:#dfe3ed;
-}
-
-.prompt{
-  margin-top:20px;
-  display:flex;
-  gap:10px;
-  background:#080b11;
-  border:1px solid var(--line);
-  border-radius:13px;
-  padding:8px;
-}
-
-.prompt textarea{
-  flex:1;
-  resize:none;
-  border:0;
-  outline:0;
-  background:none;
-  color:#fff;
-  padding:9px;
-  height:44px;
-  font-size:12px;
-}
-
-.send{
-  width:45px;
-  border:0;
-  border-radius:9px;
-  background:linear-gradient(135deg,var(--accent),#4f9cff);
-  color:white;
-}
-
-/* =========================
-   METRICS
-========================= */
-
-.metrics{
-  max-width:1250px;
-  margin:auto;
+.metric-grid{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
 }
 
 .metric{
-  padding:25px;
+  padding:20px;
+  background:#0c1016;
   border:1px solid var(--line);
-  border-radius:16px;
-  background:rgba(255,255,255,.025);
+  border-radius:13px;
 }
 
 .metric small{
-  color:#626a7b;
-  font:9px "DM Mono";
+  color:#596270;
+  font-size:9px;
 }
 
 .metric strong{
   display:block;
-  font-size:30px;
-  margin-top:13px;
-  letter-spacing:-.04em;
+  margin-top:10px;
+  font-size:25px;
 }
 
-.metric span{
-  display:block;
+.metric em{
   color:var(--green);
+  font-style:normal;
+  font-size:9px;
+}
+
+.chart{
+  height:180px;
+  margin-top:12px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:35px 35px;
+}
+
+.chart svg{
+  position:absolute;
+  inset:20px;
+  width:calc(100% - 40px);
+  height:calc(100% - 40px);
+}
+
+.activity{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+.activity-box{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:18px;
+}
+
+.activity-box h4{
+  font-size:11px;
+  margin-bottom:16px;
+}
+
+.activity-row{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+  border-bottom:1px solid rgba(255,255,255,.045);
+  color:#707987;
+  font-size:9px;
+}
+
+/* =========================
+   AI TOOLS
+========================= */
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.tool{
+  padding:28px;
+  min-height:220px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:linear-gradient(145deg,#0b0f15,#080a0e);
+  transition:.35s;
+}
+
+.tool:hover{
+  transform:translateY(-6px);
+  border-color:rgba(108,140,255,.3);
+  box-shadow:0 20px 50px rgba(0,0,0,.25);
+}
+
+.tool-icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(108,140,255,.1);
+  color:#9eb4ff;
+  font-size:17px;
+}
+
+.tool h3{
+  margin-top:28px;
+  font-size:18px;
+}
+
+.tool p{
+  color:#697381;
+  font-size:11px;
+  line-height:1.8;
+  margin-top:10px;
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat-shell{
+  max-width:1000px;
+  margin:auto;
+  border:1px solid var(--line);
+  background:#080b10;
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.chat-head{
+  padding:18px 22px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.ai-avatar{
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--cyan),var(--purple));
+  color:#050608;
+  font-weight:800;
+}
+
+.chat-status{
+  color:var(--green);
+  font-size:8px;
+  font-family:"DM Mono",monospace;
+}
+
+.chat-body{
+  height:420px;
+  overflow:auto;
+  padding:25px;
+}
+
+.message{
+  display:flex;
+  margin-bottom:18px;
+}
+
+.message.user{
+  justify-content:flex-end;
+}
+
+.bubble{
+  max-width:70%;
+  padding:14px 16px;
+  border-radius:14px;
+  background:#10151d;
+  border:1px solid var(--line);
+  color:#aeb6c3;
+  font-size:11px;
+  line-height:1.7;
+}
+
+.user .bubble{
+  background:linear-gradient(135deg,#273d8e,#382a69);
+  color:white;
+  border:0;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  padding:15px;
+  border-top:1px solid var(--line);
+}
+
+.chat-input textarea{
+  flex:1;
+  min-height:45px;
+  max-height:100px;
+  resize:none;
+  background:#0d1117;
+  color:white;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:13px;
+  outline:none;
+}
+
+.send{
+  width:48px;
+  border:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--blue),var(--purple));
+  color:white;
+}
+
+/* =========================
+   PRICING
+========================= */
+
+.pricing{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.price-card{
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#090c11;
+}
+
+.price-card.featured{
+  border-color:rgba(108,140,255,.5);
+  box-shadow:0 0 60px rgba(108,140,255,.08);
+}
+
+.price-card h3{
+  font-size:17px;
+}
+
+.price{
+  font-size:42px;
+  font-weight:700;
+  letter-spacing:-.06em;
+  margin:25px 0;
+}
+
+.price span{
+  color:#626b78;
   font-size:10px;
-  margin-top:6px;
+  font-weight:400;
+}
+
+.features{
+  list-style:none;
+  margin:25px 0;
+}
+
+.features li{
+  padding:9px 0;
+  color:#707987;
+  font-size:10px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.features li::before{
+  content:"✓";
+  color:var(--green);
+  margin-right:9px;
 }
 
 /* =========================
@@ -663,30 +771,27 @@ a{
 ========================= */
 
 .cta{
-  max-width:1100px;
-  margin:0 auto 120px;
-  padding:80px 40px;
-  text-align:center;
-  position:relative;
-  z-index:3;
+  margin:50px 7vw 120px;
   border:1px solid var(--line);
-  border-radius:28px;
-  overflow:hidden;
+  border-radius:25px;
+  padding:75px;
+  text-align:center;
   background:
-    radial-gradient(circle at 50% 0%,rgba(124,92,255,.22),transparent 45%),
-    #090c13;
+    radial-gradient(circle at 50% 0%,rgba(108,140,255,.18),transparent 45%),
+    #090c11;
 }
 
 .cta h2{
-  font-size:clamp(38px,6vw,72px);
-  letter-spacing:-.065em;
+  font-size:clamp(42px,6vw,75px);
+  letter-spacing:-.07em;
 }
 
 .cta p{
-  color:var(--muted);
+  max-width:520px;
   margin:20px auto 30px;
-  max-width:550px;
-  line-height:1.7;
+  color:#707987;
+  line-height:1.8;
+  font-size:12px;
 }
 
 /* =========================
@@ -694,315 +799,99 @@ a{
 ========================= */
 
 footer{
-  position:relative;
-  z-index:3;
+  padding:35px 7vw;
   border-top:1px solid var(--line);
-  padding:30px 6vw;
   display:flex;
   justify-content:space-between;
-  color:#555d6d;
-  font-size:10px;
-}
-
-footer strong{
-  color:#aab0bd;
+  color:#555d69;
+  font-family:"DM Mono",monospace;
+  font-size:8px;
 }
 
 /* =========================
-   MODAL
+   MODALS
 ========================= */
 
-.overlay{
+.modal{
   position:fixed;
   inset:0;
   z-index:5000;
   display:none;
   place-items:center;
   padding:20px;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(18px);
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(20px);
 }
 
-.overlay.open{
+.modal.open{
   display:grid;
 }
 
-.modal{
+.modal-box{
   width:min(450px,100%);
-  background:#0b0e15;
+  padding:32px;
   border:1px solid var(--line);
   border-radius:20px;
-  padding:30px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
-  animation:modalIn .25s ease;
+  background:#0a0d12;
+  box-shadow:0 30px 100px rgba(0,0,0,.6);
 }
 
-@keyframes modalIn{
-  from{
-    opacity:0;
-    transform:translateY(15px) scale(.98);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
-}
-
-.modal-head h3{
-  font-size:21px;
-}
-
-.close{
-  width:34px;
-  height:34px;
-  border-radius:8px;
-  border:1px solid var(--line);
-  background:none;
-  color:#8b92a1;
-}
-
-.close:hover{
-  color:#fff;
-}
-
-.field{
-  margin-bottom:15px;
-}
-
-.field label{
-  display:block;
-  font-size:10px;
-  color:#707889;
-  margin-bottom:7px;
-}
-
-.field input,
-.field select{
-  width:100%;
-  height:45px;
-  border:1px solid var(--line);
-  background:#080b11;
-  border-radius:9px;
-  outline:none;
-  color:#fff;
-  padding:0 12px;
-}
-
-.field input:focus,
-.field select:focus{
-  border-color:rgba(124,92,255,.6);
-}
-
-.modal-submit{
-  width:100%;
-  margin-top:8px;
-  height:47px;
-}
-
-.modal-foot{
-  text-align:center;
-  color:#646c7c;
-  font-size:10px;
-  margin-top:18px;
-}
-
-.modal-foot button{
-  background:none;
-  border:0;
-  color:#9d8cff;
-}
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dashboard{
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:4000;
-  background:#05060a;
-}
-
-.dashboard.open{
-  display:flex;
-}
-
-.dash-sidebar{
-  width:230px;
-  border-right:1px solid var(--line);
-  padding:25px 15px;
-  background:#07090e;
-}
-
-.dash-logo{
-  padding:0 10px 30px;
-}
-
-.dash-nav{
-  display:grid;
-  gap:4px;
-}
-
-.dash-nav button{
-  text-align:left;
-  border:0;
-  background:none;
-  color:#6f7788;
-  padding:12px;
-  border-radius:9px;
-  font-size:11px;
-}
-
-.dash-nav button.active,
-.dash-nav button:hover{
-  color:#fff;
-  background:rgba(124,92,255,.1);
-}
-
-.dash-main{
-  flex:1;
-  overflow:auto;
-}
-
-.dash-top{
-  height:75px;
-  border-bottom:1px solid var(--line);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 30px;
-  position:sticky;
-  top:0;
-  background:rgba(5,6,10,.8);
-  backdrop-filter:blur(20px);
-  z-index:5;
-}
-
-.user-pill{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  color:#9da5b5;
-  font-size:11px;
-}
-
-.avatar{
-  width:30px;
-  height:30px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  background:linear-gradient(135deg,#7c5cff,#20d9ff);
-  color:#fff;
-  font-size:10px;
-}
-
-.dash-content{
-  padding:35px;
-  max-width:1300px;
-}
-
-.dash-welcome{
-  margin-bottom:30px;
-}
-
-.dash-welcome h1{
-  font-size:32px;
+.modal-box h2{
+  font-size:28px;
   letter-spacing:-.05em;
 }
 
-.dash-welcome p{
-  color:#687082;
-  font-size:12px;
-  margin-top:8px;
+.modal-sub{
+  color:#68717e;
+  font-size:11px;
+  line-height:1.7;
+  margin:10px 0 25px;
 }
 
-.dash-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+.form-field{
+  margin-bottom:13px;
 }
 
-.dash-card{
-  padding:20px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:#090c12;
-}
-
-.dash-card small{
-  color:#656d7e;
-  font:9px "DM Mono";
-}
-
-.dash-card strong{
+.form-field label{
   display:block;
-  margin-top:12px;
-  font-size:27px;
+  color:#697381;
+  font-size:8px;
+  margin-bottom:7px;
+  font-family:"DM Mono",monospace;
 }
 
-.projects{
-  margin-top:35px;
-}
-
-.projects-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
-}
-
-.projects-head h2{
-  font-size:18px;
-}
-
-.project-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.project{
-  padding:20px;
-  min-height:160px;
+.form-field input{
+  width:100%;
+  background:#0d1117;
   border:1px solid var(--line);
-  border-radius:15px;
-  background:
-    linear-gradient(145deg,rgba(124,92,255,.06),rgba(255,255,255,.015));
-  transition:.25s;
+  color:white;
+  padding:13px;
+  border-radius:9px;
+  outline:none;
 }
 
-.project:hover{
-  transform:translateY(-4px);
-  border-color:rgba(124,92,255,.3);
+.form-field input:focus{
+  border-color:rgba(108,140,255,.6);
 }
 
-.project-icon{
-  width:38px;
-  height:38px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:#111521;
-  margin-bottom:25px;
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:20px;
 }
 
-.project h3{
-  font-size:13px;
+.modal-actions button{
+  flex:1;
 }
 
-.project p{
-  margin-top:5px;
-  color:#626a79;
-  font-size:10px;
+.close{
+  position:absolute;
+  top:18px;
+  right:20px;
+  background:none;
+  border:0;
+  color:#aab1bc;
+  font-size:25px;
 }
 
 /* =========================
@@ -1011,81 +900,30 @@ footer strong{
 
 .toast{
   position:fixed;
-  right:22px;
-  bottom:22px;
-  z-index:9999;
-  padding:14px 17px;
-  background:#10141d;
+  right:25px;
+  bottom:25px;
+  z-index:8000;
+  padding:14px 18px;
   border:1px solid var(--line);
-  border-radius:11px;
-  color:#cfd4df;
-  font-size:11px;
-  transform:translateY(100px);
+  border-radius:12px;
+  background:#0d1118;
+  color:#cdd4de;
+  font-size:10px;
+  transform:translateY(120px);
   opacity:0;
-  transition:.3s;
+  transition:.4s;
 }
 
 .toast.show{
-  transform:none;
+  transform:translateY(0);
   opacity:1;
-}
-
-/* =========================
-   COMMAND
-========================= */
-
-.command{
-  position:fixed;
-  inset:0;
-  z-index:7000;
-  display:none;
-  place-items:start center;
-  padding-top:15vh;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(15px);
-}
-
-.command.open{
-  display:grid;
-}
-
-.command-box{
-  width:min(620px,90%);
-  background:#0b0e15;
-  border:1px solid var(--line);
-  border-radius:17px;
-  overflow:hidden;
-}
-
-.command-input{
-  width:100%;
-  height:60px;
-  border:0;
-  border-bottom:1px solid var(--line);
-  outline:0;
-  background:none;
-  color:#fff;
-  padding:0 20px;
-}
-
-.command-item{
-  padding:14px 20px;
-  color:#858d9e;
-  font-size:11px;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  cursor:pointer;
-}
-
-.command-item:hover{
-  background:rgba(124,92,255,.08);
-  color:#fff;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
   .navlinks{
     display:none;
@@ -1095,105 +933,74 @@ footer strong{
     display:block;
   }
 
-  .nav-actions .btn:first-child{
-    display:none;
-  }
-
-  .capabilities{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .metrics{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .demo-body{
+  .hero{
     grid-template-columns:1fr;
   }
 
-  .demo-side{
-    display:none;
+  .core-wrap{
+    min-height:430px;
   }
 
-  .dash-sidebar{
-    width:70px;
-  }
-
-  .dash-logo .brand span,
-  .dash-nav button span{
-    display:none;
-  }
-
-  .dash-nav button{
-    text-align:center;
-  }
-
-  .project-grid{
+  .tools-grid,
+  .pricing{
     grid-template-columns:1fr 1fr;
   }
 
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
   .nav{
-    padding:0 20px;
+    padding:0 5vw;
   }
 
   .hero{
-    padding-left:20px;
-    padding-right:20px;
+    padding:130px 5vw 80px;
   }
 
   .hero h1{
-    font-size:55px;
+    font-size:58px;
   }
 
-  .hero-copy{
-    font-size:13px;
-  }
-
-  .hero-actions{
+  .hero-buttons{
     flex-direction:column;
-  }
-
-  .hero-actions .btn{
-    width:100%;
-  }
-
-  .hero-stats{
-    gap:20px;
-  }
-
-  .hero-stat strong{
-    font-size:18px;
-  }
-
-  .section{
-    padding:85px 20px;
-  }
-
-  .capabilities{
-    grid-template-columns:1fr;
-  }
-
-  .metrics{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .demo-main{
-    padding:18px;
-  }
-
-  .ai-head{
-    gap:10px;
     align-items:flex-start;
   }
 
+  .hero-meta{
+    gap:20px;
+  }
+
+  .section{
+    padding:90px 5vw;
+  }
+
+  .dashboard-body{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:none;
+  }
+
+  .metric-grid,
+  .activity,
+  .tools-grid,
+  .pricing{
+    grid-template-columns:1fr;
+  }
+
+  .workspace{
+    padding:18px;
+  }
+
+  .core{
+    transform:scale(.78);
+  }
+
   .cta{
-    margin-left:20px;
-    margin-right:20px;
-    padding:60px 20px;
+    margin:20px 5vw 80px;
+    padding:55px 25px;
   }
 
   footer{
@@ -1201,27 +1008,6 @@ footer strong{
     gap:12px;
     text-align:center;
   }
-
-  .dash-sidebar{
-    display:none;
-  }
-
-  .dash-content{
-    padding:22px;
-  }
-
-  .dash-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .project-grid{
-    grid-template-columns:1fr;
-  }
-
-  .dash-top{
-    padding:0 20px;
-  }
-
 }
 </style>
 </head>
@@ -1229,90 +1015,98 @@ footer strong{
 <body>
 
 <canvas id="particles"></canvas>
+<div class="ambient"></div>
 <div class="noise"></div>
 
-<!-- =========================
-     NAV
-========================= -->
-
+<!-- NAV -->
 <nav class="nav" id="nav">
 
   <a href="#" class="brand">
-    <span class="brand-mark"></span>
-    <span>SYNTRA</span>
+    <div class="brandmark">S</div>
+    SYNTRA
   </a>
 
   <div class="navlinks">
-    <a href="#intelligence">Intelligence</a>
     <a href="#platform">Platform</a>
-    <a href="#analytics">Analytics</a>
-    <a href="#contact">Contact</a>
+    <a href="#tools">AI Tools</a>
+    <a href="#chat">AI Core</a>
+    <a href="#pricing">Pricing</a>
   </div>
 
   <div class="nav-actions">
     <button class="btn" id="loginBtn">Sign In</button>
-    <button class="btn primary" id="startBtn">Get Started</button>
-    <button class="mobile-menu" id="mobileMenu">☰</button>
+    <button class="btn primary" id="navStart">Get Started</button>
   </div>
+
+  <button class="mobile-menu" id="mobileMenu">☰</button>
 
 </nav>
 
-<!-- =========================
-     HERO
-========================= -->
 
+<!-- HERO -->
 <section class="hero">
 
-  <div class="orbit">
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="orbit-ring"></div>
-    <div class="orbit-core"></div>
-  </div>
+  <div>
 
-  <div class="hero-inner">
-
-    <div class="badge">
+    <div class="eyebrow">
       <span class="status-dot"></span>
       SYNTRA INTELLIGENCE ENGINE ONLINE
     </div>
 
     <h1>
       Intelligence<br>
-      <span class="gradient-text">Amplified.</span>
+      <span>without limits.</span>
     </h1>
 
     <p class="hero-copy">
-      SYNTRA is a next-generation AI workspace designed to
-      turn ideas, data and conversations into intelligent
-      outcomes — faster.
+      SYNTRA is a next-generation AI workspace built to help
+      creators, developers, teams and businesses think faster,
+      build better and automate what matters.
     </p>
 
-    <div class="hero-actions">
+    <div class="hero-buttons">
       <button class="btn primary" id="heroStart">
         Launch SYNTRA →
       </button>
 
-      <a class="btn" href="#platform">
+      <a href="#platform" class="btn">
         Explore platform
       </a>
     </div>
 
-    <div class="hero-stats">
-
-      <div class="hero-stat">
+    <div class="hero-meta">
+      <div class="meta">
         <strong>99.9%</strong>
         <span>UPTIME</span>
       </div>
 
-      <div class="hero-stat">
+      <div class="meta">
         <strong>24/7</strong>
-        <span>INTELLIGENCE</span>
+        <span>AI ACCESS</span>
       </div>
 
-      <div class="hero-stat">
+      <div class="meta">
         <strong>∞</strong>
         <span>POSSIBILITIES</span>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="core-wrap">
+
+    <div class="core">
+
+      <div class="core-ring r1"></div>
+      <div class="core-ring r2"></div>
+      <div class="core-ring r3"></div>
+
+      <div class="core-orb"></div>
+
+      <div class="core-label">
+        <small>CORE STATUS</small>
+        <strong>NEURAL ENGINE ACTIVE</strong>
       </div>
 
     </div>
@@ -1321,232 +1115,188 @@ footer strong{
 
 </section>
 
-<!-- =========================
-     INTELLIGENCE
-========================= -->
 
-<section class="section" id="intelligence">
-
-  <div class="section-head">
-
-    <div class="eyebrow">01 / INTELLIGENCE</div>
-
-    <h2 class="section-title">
-      One intelligence layer.<br>
-      <span class="gradient-text">Infinite workflows.</span>
-    </h2>
-
-    <p class="section-desc">
-      A unified AI environment for reasoning, creation,
-      analysis and automation.
-    </p>
-
-  </div>
-
-  <div class="capabilities">
-
-    <article class="cap-card">
-
-      <span class="cap-number">01</span>
-
-      <div class="cap-icon">✦</div>
-
-      <h3>Neural Reasoning</h3>
-
-      <p>
-        Break complex problems into structured,
-        actionable intelligence.
-      </p>
-
-    </article>
-
-    <article class="cap-card">
-
-      <span class="cap-number">02</span>
-
-      <div class="cap-icon">⌁</div>
-
-      <h3>Creative Engine</h3>
-
-      <p>
-        Generate concepts, copy, strategies and
-        creative directions from a single workspace.
-      </p>
-
-    </article>
-
-    <article class="cap-card">
-
-      <span class="cap-number">03</span>
-
-      <div class="cap-icon">◈</div>
-
-      <h3>Data Intelligence</h3>
-
-      <p>
-        Transform raw information into patterns,
-        insights and decisions.
-      </p>
-
-    </article>
-
-    <article class="cap-card">
-
-      <span class="cap-number">04</span>
-
-      <div class="cap-icon">↯</div>
-
-      <h3>Automation</h3>
-
-      <p>
-        Design repeatable AI workflows that
-        reduce repetitive operations.
-      </p>
-
-    </article>
-
-    <article class="cap-card">
-
-      <span class="cap-number">05</span>
-
-      <div class="cap-icon">◎</div>
-
-      <h3>Context Memory</h3>
-
-      <p>
-        Keep projects, conversations and decisions
-        connected inside one environment.
-      </p>
-
-    </article>
-
-    <article class="cap-card">
-
-      <span class="cap-number">06</span>
-
-      <div class="cap-icon">+</div>
-
-      <h3>Composable AI</h3>
-
-      <p>
-        Build your own intelligent workflow from
-        modular AI capabilities.
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
-
-<!-- =========================
-     AI PLATFORM
-========================= -->
-
+<!-- PLATFORM -->
 <section class="section" id="platform">
 
   <div class="section-head">
 
-    <div class="eyebrow">02 / SYNTRA CORE</div>
+    <div class="section-kicker">
+      01 / SYNTRA PLATFORM
+    </div>
 
-    <h2 class="section-title">
-      Think with<br>
-      <span class="gradient-text">SYNTRA.</span>
+    <h2>
+      One intelligence layer.
+      <br>Infinite workflows.
     </h2>
 
-    <p class="section-desc">
-      Try the interactive AI workspace below.
-      This demo simulates the SYNTRA intelligence layer.
+    <p>
+      A unified AI environment for research, creation,
+      automation and decision making.
     </p>
 
   </div>
 
-  <div class="demo">
 
-    <div class="demo-top">
+  <div class="dashboard">
+
+    <div class="dashboard-top">
 
       <div class="window-dots">
-        <i></i>
-        <i></i>
-        <i></i>
+        <i></i><i></i><i></i>
       </div>
 
-      <div class="demo-title">
-        SYNTRA / WORKSPACE
+      <div class="dashboard-title">
+        SYNTRA / COMMAND CENTER
       </div>
 
-      <div style="width:35px"></div>
+      <div class="live">
+        ● SYSTEM LIVE
+      </div>
 
     </div>
 
-    <div class="demo-body">
 
-      <aside class="demo-side">
+    <div class="dashboard-body">
 
-        <div class="side-label">WORKSPACE</div>
+      <aside class="sidebar">
 
-        <div class="side-item active">
-          ✦ <span>AI Assistant</span>
+        <div class="side-label">
+          WORKSPACE
         </div>
 
-        <div class="side-item">
-          ◈ <span>Projects</span>
+        <button class="side-link active">
+          ◈ Overview
+        </button>
+
+        <button class="side-link">
+          ✦ AI Assistant
+        </button>
+
+        <button class="side-link">
+          ◫ Projects
+        </button>
+
+        <button class="side-link">
+          ◉ Analytics
+        </button>
+
+        <div class="side-label">
+          SYSTEM
         </div>
 
-        <div class="side-item">
-          ◇ <span>Analytics</span>
-        </div>
-
-        <div class="side-item">
-          ⌁ <span>Automations</span>
-        </div>
-
-        <div class="side-label">SYSTEM</div>
-
-        <div class="side-item">
-          ⚙ <span>Settings</span>
-        </div>
+        <button class="side-link">
+          ⚙ Settings
+        </button>
 
       </aside>
 
-      <main class="demo-main">
 
-        <div class="ai-head">
+      <main class="workspace">
 
-          <div>
-            <h3>AI Assistant</h3>
-            <div style="color:#606879;font-size:10px;margin-top:5px">
-              Ready for your next idea.
+        <div class="workspace-head">
+          <h3>Command Center</h3>
+          <span class="live">ALL SYSTEMS OPERATIONAL</span>
+        </div>
+
+
+        <div class="metric-grid">
+
+          <div class="metric">
+            <small>AI REQUESTS</small>
+            <strong>18,492</strong>
+            <em>+24.8%</em>
+          </div>
+
+          <div class="metric">
+            <small>GENERATIONS</small>
+            <strong>7,821</strong>
+            <em>+18.4%</em>
+          </div>
+
+          <div class="metric">
+            <small>TIME SAVED</small>
+            <strong>284h</strong>
+            <em>+31.2%</em>
+          </div>
+
+        </div>
+
+
+        <div class="chart">
+
+          <svg viewBox="0 0 800 180" preserveAspectRatio="none">
+
+            <defs>
+              <linearGradient id="lineGradient">
+                <stop offset="0%" stop-color="#56e0ff"/>
+                <stop offset="100%" stop-color="#a87cff"/>
+              </linearGradient>
+            </defs>
+
+            <path
+              d="M0 145
+                 C60 130 70 150 120 115
+                 S190 100 230 120
+                 S280 70 330 85
+                 S390 120 430 65
+                 S490 90 530 50
+                 S590 85 630 42
+                 S700 65 800 15"
+              fill="none"
+              stroke="url(#lineGradient)"
+              stroke-width="3"
+            />
+
+          </svg>
+
+        </div>
+
+
+        <div class="activity">
+
+          <div class="activity-box">
+
+            <h4>Recent activity</h4>
+
+            <div class="activity-row">
+              <span>Research Agent</span>
+              <span>2m ago</span>
             </div>
+
+            <div class="activity-row">
+              <span>Code Generation</span>
+              <span>8m ago</span>
+            </div>
+
+            <div class="activity-row">
+              <span>Document Analysis</span>
+              <span>16m ago</span>
+            </div>
+
           </div>
 
-          <select class="model" id="modelSelect">
-            <option>SYNTRA Core</option>
-            <option>Reasoning Engine</option>
-            <option>Creative Engine</option>
-          </select>
 
-        </div>
+          <div class="activity-box">
 
-        <div class="chat" id="chat">
+            <h4>AI performance</h4>
 
-          <div class="message">
-            Hello. I'm SYNTRA. Give me a problem,
-            idea or question and I'll help structure it.
+            <div class="activity-row">
+              <span>Reasoning</span>
+              <span>98.7%</span>
+            </div>
+
+            <div class="activity-row">
+              <span>Accuracy</span>
+              <span>97.4%</span>
+            </div>
+
+            <div class="activity-row">
+              <span>Latency</span>
+              <span>142ms</span>
+            </div>
+
           </div>
-
-        </div>
-
-        <div class="prompt">
-
-          <textarea
-            id="prompt"
-            placeholder="Ask SYNTRA anything..."
-          ></textarea>
-
-          <button class="send" id="send">
-            ↑
-          </button>
 
         </div>
 
@@ -1558,408 +1308,401 @@ footer strong{
 
 </section>
 
-<!-- =========================
-     ANALYTICS
-========================= -->
 
-<section class="section" id="analytics">
+<!-- TOOLS -->
+<section class="section" id="tools">
 
   <div class="section-head">
 
-    <div class="eyebrow">03 / PERFORMANCE</div>
+    <div class="section-kicker">
+      02 / INTELLIGENCE MODULES
+    </div>
 
-    <h2 class="section-title">
-      Intelligence<br>
-      <span class="gradient-text">in numbers.</span>
+    <h2>
+      Your AI toolkit.
+    </h2>
+
+    <p>
+      Purpose-built intelligence modules for the work
+      that normally takes hours.
+    </p>
+
+  </div>
+
+
+  <div class="tools-grid">
+
+    <article class="tool">
+
+      <div class="tool-icon">✦</div>
+
+      <h3>Research Engine</h3>
+
+      <p>
+        Break down complex subjects, synthesize information
+        and surface useful insights instantly.
+      </p>
+
+    </article>
+
+
+    <article class="tool">
+
+      <div class="tool-icon">⌘</div>
+
+      <h3>Code Architect</h3>
+
+      <p>
+        Generate, explain, debug and restructure software
+        with an intelligent development workflow.
+      </p>
+
+    </article>
+
+
+    <article class="tool">
+
+      <div class="tool-icon">◈</div>
+
+      <h3>Creative Studio</h3>
+
+      <p>
+        Transform rough ideas into polished concepts,
+        copy, campaigns and creative systems.
+      </p>
+
+    </article>
+
+
+    <article class="tool">
+
+      <div class="tool-icon">◎</div>
+
+      <h3>Data Intelligence</h3>
+
+      <p>
+        Analyze datasets, identify patterns and turn raw
+        information into actionable decisions.
+      </p>
+
+    </article>
+
+
+    <article class="tool">
+
+      <div class="tool-icon">↗</div>
+
+      <h3>Automation Agent</h3>
+
+      <p>
+        Design repeatable workflows that reduce manual
+        operations and accelerate execution.
+      </p>
+
+    </article>
+
+
+    <article class="tool">
+
+      <div class="tool-icon">⌁</div>
+
+      <h3>Vision AI</h3>
+
+      <p>
+        Understand images, interfaces and visual information
+        through multimodal reasoning.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<!-- CHAT -->
+<section class="section" id="chat">
+
+  <div class="section-head">
+
+    <div class="section-kicker">
+      03 / SYNTRA AI CORE
+    </div>
+
+    <h2>
+      Talk to intelligence.
+    </h2>
+
+    <p>
+      This demo workspace includes a functional local AI-style
+      interaction layer for the SYNTRA experience.
+    </p>
+
+  </div>
+
+
+  <div class="chat-shell">
+
+    <div class="chat-head">
+
+      <div class="ai-avatar">S</div>
+
+      <div>
+        <strong>SYNTRA CORE</strong>
+        <div class="chat-status">
+          ● ONLINE
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="chat-body" id="chatBody">
+
+      <div class="message">
+
+        <div class="bubble">
+          Hello. I'm SYNTRA Core. Ask me to analyze,
+          brainstorm, explain or build something.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="chat-input">
+
+      <textarea
+        id="chatInput"
+        placeholder="Ask SYNTRA anything..."
+      ></textarea>
+
+      <button class="send" id="sendMessage">
+        ↑
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+
+  <div class="section-head">
+
+    <div class="section-kicker">
+      04 / ACCESS
+    </div>
+
+    <h2>
+      Intelligence for every scale.
     </h2>
 
   </div>
 
-  <div class="metrics">
 
-    <div class="metric">
-      <small>REQUESTS PROCESSED</small>
-      <strong>2.4M</strong>
-      <span>+18.4%</span>
-    </div>
+  <div class="pricing">
 
-    <div class="metric">
-      <small>AVG RESPONSE</small>
-      <strong>0.42s</strong>
-      <span>−31.2%</span>
-    </div>
+    <article class="price-card">
 
-    <div class="metric">
-      <small>ACTIVE WORKSPACES</small>
-      <strong>18.7K</strong>
-      <span>+24.8%</span>
-    </div>
+      <h3>Starter</h3>
 
-    <div class="metric">
-      <small>INTELLIGENCE SCORE</small>
-      <strong>98.7</strong>
-      <span>+6.1%</span>
-    </div>
+      <div class="price">
+        ₹0 <span>/ forever</span>
+      </div>
+
+      <ul class="features">
+        <li>AI workspace</li>
+        <li>Basic conversations</li>
+        <li>Creative tools</li>
+        <li>Limited projects</li>
+      </ul>
+
+      <button class="btn primary fullStart">
+        Start free
+      </button>
+
+    </article>
+
+
+    <article class="price-card featured">
+
+      <h3>Pro</h3>
+
+      <div class="price">
+        ₹999 <span>/ month</span>
+      </div>
+
+      <ul class="features">
+        <li>Advanced AI reasoning</li>
+        <li>Unlimited projects</li>
+        <li>Research engine</li>
+        <li>Automation workflows</li>
+        <li>Priority processing</li>
+      </ul>
+
+      <button class="btn primary fullStart">
+        Start Pro
+      </button>
+
+    </article>
+
+
+    <article class="price-card">
+
+      <h3>Enterprise</h3>
+
+      <div class="price">
+        Custom
+      </div>
+
+      <ul class="features">
+        <li>Dedicated workspace</li>
+        <li>Team intelligence</li>
+        <li>Custom integrations</li>
+        <li>Security controls</li>
+        <li>Priority support</li>
+      </ul>
+
+      <button class="btn" id="enterpriseBtn">
+        Contact sales
+      </button>
+
+    </article>
 
   </div>
 
 </section>
 
-<!-- =========================
-     CTA
-========================= -->
 
-<section class="cta" id="contact">
-
-  <div class="eyebrow">04 / THE NEXT STEP</div>
+<!-- CTA -->
+<section class="cta">
 
   <h2>
-    Your ideas deserve<br>
-    <span class="gradient-text">more intelligence.</span>
+    Build the future<br>
+    with SYNTRA.
   </h2>
 
   <p>
-    Enter the SYNTRA workspace and experience
-    the next layer of AI-powered productivity.
+    Turn ideas into systems. Turn information into decisions.
+    Turn work into momentum.
   </p>
 
   <button class="btn primary" id="ctaStart">
-    Create your workspace →
+    Enter SYNTRA →
   </button>
 
 </section>
 
-<!-- =========================
-     FOOTER
-========================= -->
 
 <footer>
 
-  <div>
-    <strong>SYNTRA</strong> — Intelligence, Amplified.
-  </div>
-
-  <div>
-    AI / SYSTEMS / FUTURE
-  </div>
-
-  <div>
-    © 2026 SYNTRA
-  </div>
+  <div>SYNTRA AI</div>
+  <div>INTELLIGENCE • AUTOMATION • CREATION</div>
+  <div>© 2026 SYNTRA</div>
 
 </footer>
 
-<!-- =========================
-     AUTH MODAL
-========================= -->
 
-<div class="overlay" id="authOverlay">
+<!-- AUTH MODAL -->
+<div class="modal" id="authModal">
 
-  <div class="modal">
+  <button class="close" id="closeAuth">×</button>
 
-    <div class="modal-head">
+  <div class="modal-box">
 
-      <h3 id="authTitle">Welcome back.</h3>
-
-      <button class="close" id="authClose">
-        ×
-      </button>
-
+    <div class="eyebrow">
+      <span class="status-dot"></span>
+      SYNTRA ACCESS
     </div>
+
+    <h2 id="authTitle">
+      Welcome back.
+    </h2>
+
+    <p class="modal-sub" id="authSub">
+      Sign in to enter your SYNTRA workspace.
+    </p>
+
 
     <form id="authForm">
 
-      <div class="field">
+      <div class="form-field">
 
         <label>Email</label>
 
         <input
+          id="authEmail"
           type="email"
-          id="email"
-          placeholder="you@example.com"
           required
+          placeholder="you@example.com"
         >
 
       </div>
 
-      <div class="field">
+
+      <div class="form-field">
 
         <label>Password</label>
 
         <input
+          id="authPassword"
           type="password"
-          id="password"
-          placeholder="••••••••"
-          minlength="6"
           required
+          placeholder="••••••••"
         >
 
       </div>
 
-      <button
-        type="submit"
-        class="btn primary modal-submit"
-      >
-        Continue →
-      </button>
 
-    </form>
-
-    <div class="modal-foot">
-
-      <span id="switchText">
-        New to SYNTRA?
-      </span>
-
-      <button id="switchAuth">
-        Create account
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<div class="dashboard" id="dashboard">
-
-  <aside class="dash-sidebar">
-
-    <div class="dash-logo">
-
-      <a class="brand" href="#">
-        <span class="brand-mark"></span>
-        <span>SYNTRA</span>
-      </a>
-
-    </div>
-
-    <div class="dash-nav">
-
-      <button class="active">
-        ✦ <span>Overview</span>
-      </button>
-
-      <button>
-        ◈ <span>AI Workspace</span>
-      </button>
-
-      <button>
-        ◇ <span>Projects</span>
-      </button>
-
-      <button>
-        ◎ <span>Analytics</span>
-      </button>
-
-      <button>
-        ⌁ <span>Automations</span>
-      </button>
-
-      <button>
-        ⚙ <span>Settings</span>
-      </button>
-
-    </div>
-
-  </aside>
-
-  <main class="dash-main">
-
-    <header class="dash-top">
-
-      <div style="font:10px 'DM Mono';color:#697181">
-        SYNTRA / COMMAND CENTER
-      </div>
-
-      <div class="user-pill">
-
-        <div class="avatar" id="avatar">
-          K
-        </div>
-
-        <span id="userEmail">
-          guest@syntra.ai
-        </span>
+      <div class="modal-actions">
 
         <button
+          type="button"
           class="btn"
-          id="logout"
-          style="padding:7px 10px"
+          id="switchAuth"
         >
-          Exit
+          Create account
+        </button>
+
+        <button
+          type="submit"
+          class="btn primary"
+        >
+          Continue →
         </button>
 
       </div>
 
-    </header>
-
-    <div class="dash-content">
-
-      <div class="dash-welcome">
-
-        <h1 id="welcome">
-          Welcome to SYNTRA.
-        </h1>
-
-        <p>
-          Your intelligence workspace is ready.
-        </p>
-
-      </div>
-
-      <div class="dash-grid">
-
-        <div class="dash-card">
-          <small>AI REQUESTS</small>
-          <strong>1,284</strong>
-        </div>
-
-        <div class="dash-card">
-          <small>PROJECTS</small>
-          <strong>12</strong>
-        </div>
-
-        <div class="dash-card">
-          <small>WORKFLOW RUNS</small>
-          <strong>348</strong>
-        </div>
-
-        <div class="dash-card">
-          <small>EFFICIENCY</small>
-          <strong>94%</strong>
-        </div>
-
-      </div>
-
-      <section class="projects">
-
-        <div class="projects-head">
-
-          <h2>Recent projects</h2>
-
-          <button
-            class="btn primary"
-            id="newProject"
-          >
-            + New project
-          </button>
-
-        </div>
-
-        <div class="project-grid">
-
-          <article class="project">
-
-            <div class="project-icon">
-              ◈
-            </div>
-
-            <h3>Product Intelligence</h3>
-
-            <p>
-              Strategy & research workspace
-            </p>
-
-          </article>
-
-          <article class="project">
-
-            <div class="project-icon">
-              ✦
-            </div>
-
-            <h3>Creative Engine</h3>
-
-            <p>
-              Content generation workspace
-            </p>
-
-          </article>
-
-          <article class="project">
-
-            <div class="project-icon">
-              ◎
-            </div>
-
-            <h3>Market Analysis</h3>
-
-            <p>
-              Data intelligence workspace
-            </p>
-
-          </article>
-
-        </div>
-
-      </section>
-
-    </div>
-
-  </main>
-
-</div>
-
-<!-- =========================
-     COMMAND PALETTE
-========================= -->
-
-<div class="command" id="command">
-
-  <div class="command-box">
-
-    <input
-      class="command-input"
-      id="commandInput"
-      placeholder="Search SYNTRA..."
-    >
-
-    <div class="command-item" data-command="dashboard">
-      Open Dashboard
-    </div>
-
-    <div class="command-item" data-command="platform">
-      Open AI Platform
-    </div>
-
-    <div class="command-item" data-command="login">
-      Sign In
-    </div>
-
-    <div class="command-item" data-command="start">
-      Get Started
-    </div>
+    </form>
 
   </div>
 
 </div>
 
-<div class="toast" id="toast">
-  Action completed.
-</div>
+
+<div class="toast" id="toast"></div>
+
 
 <script>
 
-/* ==========================================
-   PARTICLE ENGINE
-========================================== */
+/* =========================
+   PARTICLES
+========================= */
 
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
 
-let W;
-let H;
-let particles = [];
+let W,H;
 
 function resizeCanvas(){
 
-  W = canvas.width = window.innerWidth;
-  H = canvas.height = window.innerHeight;
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=window.innerHeight;
 
 }
 
@@ -1967,8 +1710,10 @@ resizeCanvas();
 
 window.addEventListener("resize",resizeCanvas);
 
-const particleCount =
-  window.innerWidth < 700 ? 45 : 90;
+const particles=[];
+
+const particleCount=
+  window.innerWidth<700 ? 55 : 100;
 
 for(let i=0;i<particleCount;i++){
 
@@ -1977,89 +1722,57 @@ for(let i=0;i<particleCount;i++){
     x:Math.random()*window.innerWidth,
     y:Math.random()*window.innerHeight,
 
-    vx:(Math.random()-.5)*.22,
-    vy:(Math.random()-.5)*.22,
+    vx:(Math.random()-.5)*.18,
+    vy:(Math.random()-.5)*.18,
 
-    r:Math.random()*1.4+.3
+    size:Math.random()*1.5+.3
 
   });
 
 }
 
-function particleAnimation(){
+function drawParticles(){
 
   ctx.clearRect(0,0,W,H);
 
   for(const p of particles){
 
-    p.x += p.vx;
-    p.y += p.vy;
+    p.x+=p.vx;
+    p.y+=p.vy;
 
-    if(p.x<0) p.x=W;
-    if(p.x>W) p.x=0;
-    if(p.y<0) p.y=H;
-    if(p.y>H) p.y=0;
+    if(p.x<0)p.x=W;
+    if(p.x>W)p.x=0;
+
+    if(p.y<0)p.y=H;
+    if(p.y>H)p.y=0;
 
     ctx.beginPath();
 
     ctx.arc(
       p.x,
       p.y,
-      p.r,
+      p.size,
       0,
       Math.PI*2
     );
 
-    ctx.fillStyle="rgba(125,100,255,.45)";
+    ctx.fillStyle="rgba(120,150,255,.55)";
     ctx.fill();
 
   }
 
-  for(let i=0;i<particles.length;i++){
-
-    for(let j=i+1;j<particles.length;j++){
-
-      const a=particles[i];
-      const b=particles[j];
-
-      const dx=a.x-b.x;
-      const dy=a.y-b.y;
-
-      const distance=Math.sqrt(
-        dx*dx+dy*dy
-      );
-
-      if(distance<120){
-
-        ctx.beginPath();
-
-        ctx.moveTo(a.x,a.y);
-        ctx.lineTo(b.x,b.y);
-
-        ctx.strokeStyle=
-          `rgba(124,92,255,${(1-distance/120)*.08})`;
-
-        ctx.stroke();
-
-      }
-
-    }
-
-  }
-
-  requestAnimationFrame(particleAnimation);
+  requestAnimationFrame(drawParticles);
 
 }
 
-particleAnimation();
+drawParticles();
 
 
-/* ==========================================
+/* =========================
    NAV SCROLL
-========================================== */
+========================= */
 
-const nav =
-  document.getElementById("nav");
+const nav=document.getElementById("nav");
 
 window.addEventListener("scroll",()=>{
 
@@ -2071,348 +1784,336 @@ window.addEventListener("scroll",()=>{
 });
 
 
-/* ==========================================
+/* =========================
    TOAST
-========================================== */
+========================= */
 
-const toast =
-  document.getElementById("toast");
-
-let toastTimer;
+const toast=document.getElementById("toast");
 
 function showToast(message){
 
   toast.textContent=message;
-
   toast.classList.add("show");
 
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(()=>{
-
+  setTimeout(()=>{
     toast.classList.remove("show");
-
-  },2600);
+  },2800);
 
 }
 
 
-/* ==========================================
+/* =========================
    AUTH
-========================================== */
+========================= */
 
-const authOverlay =
-  document.getElementById("authOverlay");
+const authModal=
+  document.getElementById("authModal");
 
-const authTitle =
+const authTitle=
   document.getElementById("authTitle");
 
-const authForm =
-  document.getElementById("authForm");
+const authSub=
+  document.getElementById("authSub");
 
-const switchAuth =
+const switchAuth=
   document.getElementById("switchAuth");
 
-const switchText =
-  document.getElementById("switchText");
+const authForm=
+  document.getElementById("authForm");
+
+const closeAuth=
+  document.getElementById("closeAuth");
 
 let signupMode=false;
 
-function openAuth(signup=false){
 
-  signupMode=signup;
+function openAuth(){
 
-  authTitle.textContent =
-    signup
-    ? "Create your workspace."
-    : "Welcome back.";
-
-  switchText.textContent =
-    signup
-    ? "Already have an account?"
-    : "New to SYNTRA?";
-
-  switchAuth.textContent =
-    signup
-    ? "Sign in"
-    : "Create account";
-
-  authOverlay.classList.add("open");
-
-  document.body.classList.add("modal-open");
+  authModal.classList.add("open");
 
 }
 
-function closeAuth(){
 
-  authOverlay.classList.remove("open");
+function closeAuthModal(){
 
-  document.body.classList.remove("modal-open");
+  authModal.classList.remove("open");
 
 }
 
-document
-  .getElementById("loginBtn")
-  .onclick=()=>openAuth(false);
 
-document
-  .getElementById("startBtn")
-  .onclick=()=>openAuth(true);
+document.getElementById("loginBtn")
+  .onclick=()=>{
 
-document
-  .getElementById("heroStart")
-  .onclick=()=>openAuth(true);
+    signupMode=false;
 
-document
-  .getElementById("ctaStart")
-  .onclick=()=>openAuth(true);
+    authTitle.textContent=
+      "Welcome back.";
 
-document
-  .getElementById("authClose")
-  .onclick=closeAuth;
+    authSub.textContent=
+      "Sign in to enter your SYNTRA workspace.";
+
+    switchAuth.textContent=
+      "Create account";
+
+    openAuth();
+
+  };
+
 
 switchAuth.onclick=()=>{
 
-  openAuth(!signupMode);
+  signupMode=!signupMode;
 
-};
+  if(signupMode){
 
-authOverlay.onclick=e=>{
+    authTitle.textContent=
+      "Create your account.";
 
-  if(e.target===authOverlay){
-    closeAuth();
+    authSub.textContent=
+      "Build your personal SYNTRA workspace.";
+
+    switchAuth.textContent=
+      "I already have an account";
+
+  }else{
+
+    authTitle.textContent=
+      "Welcome back.";
+
+    authSub.textContent=
+      "Sign in to enter your SYNTRA workspace.";
+
+    switchAuth.textContent=
+      "Create account";
+
   }
 
 };
 
 
-/* ==========================================
-   AUTH SUBMIT
-========================================== */
+closeAuth.onclick=closeAuthModal;
+
+
+authModal.addEventListener("click",e=>{
+
+  if(e.target===authModal){
+    closeAuthModal();
+  }
+
+});
+
 
 authForm.addEventListener("submit",e=>{
 
   e.preventDefault();
 
-  const email =
-    document.getElementById("email")
-    .value.trim();
+  const email=
+    document.getElementById("authEmail")
+      .value.trim();
 
-  if(!email){
-
-    showToast("Enter your email first.");
-
-    return;
-
-  }
+  if(!email)return;
 
   localStorage.setItem(
-    "syntraUser",
+    "syntra_user",
     email
   );
 
-  closeAuth();
-
-  openDashboard(email);
+  closeAuthModal();
 
   showToast(
     signupMode
-    ? "SYNTRA workspace created."
-    : "Signed in successfully."
+      ? "Account created — welcome to SYNTRA."
+      : "Signed in successfully."
   );
 
 });
 
 
-/* ==========================================
-   DASHBOARD
-========================================== */
+/* =========================
+   START EXPERIENCE
+========================= */
 
-const dashboard =
-  document.getElementById("dashboard");
+function startExperience(){
 
-const userEmail =
-  document.getElementById("userEmail");
+  const user=
+    localStorage.getItem("syntra_user");
 
-const avatar =
-  document.getElementById("avatar");
+  if(!user){
 
-const welcome =
-  document.getElementById("welcome");
+    signupMode=false;
 
-function openDashboard(email){
+    authTitle.textContent=
+      "Enter SYNTRA.";
 
-  dashboard.classList.add("open");
+    authSub.textContent=
+      "Sign in or create a demo account to continue.";
 
-  userEmail.textContent=email;
+    switchAuth.textContent=
+      "Create account";
 
-  const initial =
-    email.charAt(0).toUpperCase();
-
-  avatar.textContent=initial;
-
-  welcome.textContent=
-    "Welcome back.";
-
-  document.body.classList.add("modal-open");
-
-}
-
-function closeDashboard(){
-
-  dashboard.classList.remove("open");
-
-  document.body.classList.remove("modal-open");
-
-}
-
-document
-  .getElementById("logout")
-  .onclick=()=>{
-
-    localStorage.removeItem(
-      "syntraUser"
-    );
-
-    closeDashboard();
-
-    showToast(
-      "Signed out of SYNTRA."
-    );
-
-  };
-
-
-/* ==========================================
-   EXISTING LOGIN
-========================================== */
-
-const existingUser =
-  localStorage.getItem("syntraUser");
-
-if(existingUser){
-
-  // Do not automatically open dashboard.
-  // User can sign in again from the main page.
-
-}
-
-
-/* ==========================================
-   AI CHAT
-========================================== */
-
-const prompt =
-  document.getElementById("prompt");
-
-const send =
-  document.getElementById("send");
-
-const chat =
-  document.getElementById("chat");
-
-function addMessage(text,type="ai"){
-
-  const div =
-    document.createElement("div");
-
-  div.className =
-    "message "+(type==="user"?"user":"");
-
-  div.textContent=text;
-
-  chat.appendChild(div);
-
-  chat.scrollTop=chat.scrollHeight;
-
-}
-
-function generateAIResponse(input){
-
-  const lower=input.toLowerCase();
-
-  if(lower.includes("website")){
-
-    return "I can structure that into a product architecture, interface system, feature map and launch strategy.";
-
-  }
-
-  if(lower.includes("business")){
-
-    return "Let's break the business into market, customer, offer, acquisition and automation layers.";
-
-  }
-
-  if(lower.includes("idea")){
-
-    return "Interesting. I'll decompose the idea into the problem, opportunity, differentiator and execution path.";
-
-  }
-
-  if(lower.includes("hello") || lower.includes("hi")){
-
-    return "Hello. SYNTRA is online. What are we building today?";
-
-  }
-
-  return "I've processed your request through the SYNTRA demo intelligence layer. The next step would be to structure the problem, identify the highest-value actions and execute them.";
-
-}
-
-function sendPrompt(){
-
-  const value =
-    prompt.value.trim();
-
-  if(!value){
-
-    showToast(
-      "Write something for SYNTRA first."
-    );
+    openAuth();
 
     return;
 
   }
 
-  addMessage(value,"user");
+  document
+    .getElementById("chat")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 
-  prompt.value="";
-
-  addMessage(
-    "Analyzing request...",
-    "ai"
+  showToast(
+    "SYNTRA workspace launched."
   );
-
-  setTimeout(()=>{
-
-    const loading =
-      chat.lastElementChild;
-
-    loading.remove();
-
-    addMessage(
-      generateAIResponse(value),
-      "ai"
-    );
-
-  },700);
 
 }
 
-send.onclick=sendPrompt;
 
-prompt.addEventListener(
+document.getElementById("heroStart")
+  .onclick=startExperience;
+
+document.getElementById("navStart")
+  .onclick=startExperience;
+
+document.getElementById("ctaStart")
+  .onclick=startExperience;
+
+document.querySelectorAll(".fullStart")
+  .forEach(btn=>{
+    btn.onclick=startExperience;
+  });
+
+
+/* =========================
+   ENTERPRISE
+========================= */
+
+document.getElementById("enterpriseBtn")
+  .onclick=()=>{
+
+    showToast(
+      "Enterprise channel opened."
+    );
+
+  };
+
+
+/* =========================
+   CHAT ENGINE
+========================= */
+
+const chatBody=
+  document.getElementById("chatBody");
+
+const chatInput=
+  document.getElementById("chatInput");
+
+const sendMessage=
+  document.getElementById("sendMessage");
+
+
+function addMessage(text,user=false){
+
+  const message=
+    document.createElement("div");
+
+  message.className=
+    "message"+(user?" user":"");
+
+  const bubble=
+    document.createElement("div");
+
+  bubble.className="bubble";
+
+  bubble.textContent=text;
+
+  message.appendChild(bubble);
+
+  chatBody.appendChild(message);
+
+  chatBody.scrollTop=
+    chatBody.scrollHeight;
+
+}
+
+
+function generateResponse(input){
+
+  const q=input.toLowerCase();
+
+  if(q.includes("hello") ||
+     q.includes("hi") ||
+     q.includes("hey")){
+
+    return "Hello. SYNTRA Core is online. What are we building today?";
+
+  }
+
+  if(q.includes("code") ||
+     q.includes("website")){
+
+    return "I can help architect the interface, break the product into components, and generate an implementation plan.";
+
+  }
+
+  if(q.includes("business")){
+
+    return "For a business workflow, I would start with the objective, inputs, repeatable processes, automation opportunities and measurable KPIs.";
+
+  }
+
+  if(q.includes("idea")){
+
+    return "Let's turn the idea into a system: define the problem, identify the user, design the core workflow, then build the smallest useful version.";
+
+  }
+
+  if(q.includes("who are you")){
+
+    return "I'm SYNTRA Core — the intelligence layer inside this demo workspace.";
+
+  }
+
+  return "I've processed the request. In a production SYNTRA deployment, this interface would route your prompt to the selected AI model and return a full response.";
+
+}
+
+
+function send(){
+
+  const text=
+    chatInput.value.trim();
+
+  if(!text)return;
+
+  addMessage(text,true);
+
+  chatInput.value="";
+
+  setTimeout(()=>{
+
+    addMessage(
+      generateResponse(text)
+    );
+
+  },650);
+
+}
+
+
+sendMessage.onclick=send;
+
+
+chatInput.addEventListener(
   "keydown",
   e=>{
 
-    if(
-      e.key==="Enter" &&
-      !e.shiftKey
-    ){
+    if(e.key==="Enter"&&!e.shiftKey){
 
       e.preventDefault();
 
-      sendPrompt();
+      send();
 
     }
 
@@ -2420,265 +2121,104 @@ prompt.addEventListener(
 );
 
 
-/* ==========================================
-   MODEL SELECTOR
-========================================== */
+/* =========================
+   SIDEBAR DEMO
+========================= */
 
-document
-  .getElementById("modelSelect")
-  .onchange=function(){
+document.querySelectorAll(".side-link")
+.forEach(link=>{
+
+  link.onclick=()=>{
+
+    document
+      .querySelectorAll(".side-link")
+      .forEach(x=>
+        x.classList.remove("active")
+      );
+
+    link.classList.add("active");
 
     showToast(
-      this.value+" selected."
+      link.textContent.trim()+" selected."
     );
 
   };
 
-
-/* ==========================================
-   NEW PROJECT
-========================================== */
-
-document
-  .getElementById("newProject")
-  .onclick=()=>{
-
-    showToast(
-      "New project workspace initialized."
-    );
-
-  };
+});
 
 
-/* ==========================================
+/* =========================
    MOBILE MENU
-========================================== */
+========================= */
 
-document
-  .getElementById("mobileMenu")
-  .onclick=()=>{
+const mobileMenu=
+  document.getElementById("mobileMenu");
 
-    showToast(
-      "Use the navigation links by scrolling."
-    );
+const navlinks=
+  document.querySelector(".navlinks");
+
+mobileMenu.onclick=()=>{
+
+  const visible=
+    getComputedStyle(navlinks).display!=="none";
+
+  if(visible){
+
+    navlinks.style.display="none";
+
+  }else{
+
+    navlinks.style.display="flex";
+    navlinks.style.position="absolute";
+    navlinks.style.top="76px";
+    navlinks.style.left="0";
+    navlinks.style.width="100%";
+    navlinks.style.padding="20px 5vw";
+    navlinks.style.flexDirection="column";
+    navlinks.style.background="#07090d";
+    navlinks.style.borderBottom=
+      "1px solid rgba(255,255,255,.08)";
+
+  }
+
+};
+
+
+document.querySelectorAll(".navlinks a")
+.forEach(a=>{
+
+  a.onclick=()=>{
+
+    if(window.innerWidth<1000){
+
+      navlinks.style.display="none";
+
+    }
 
   };
 
+});
 
-/* ==========================================
-   COMMAND PALETTE
-========================================== */
 
-const command =
-  document.getElementById("command");
-
-const commandInput =
-  document.getElementById("commandInput");
-
-function openCommand(){
-
-  command.classList.add("open");
-
-  commandInput.focus();
-
-}
-
-function closeCommand(){
-
-  command.classList.remove("open");
-
-  commandInput.value="";
-
-}
+/* =========================
+   KEYBOARD ESC
+========================= */
 
 document.addEventListener(
   "keydown",
   e=>{
 
-    if(
-      (e.ctrlKey || e.metaKey) &&
-      e.key.toLowerCase()==="k"
-    ){
-
-      e.preventDefault();
-
-      openCommand();
-
-    }
-
     if(e.key==="Escape"){
 
-      closeCommand();
-
-      closeAuth();
+      closeAuthModal();
 
     }
 
   }
 );
-
-command.onclick=e=>{
-
-  if(e.target===command){
-    closeCommand();
-  }
-
-};
-
-document
-  .querySelectorAll(".command-item")
-  .forEach(item=>{
-
-    item.onclick=()=>{
-
-      const action =
-        item.dataset.command;
-
-      closeCommand();
-
-      if(action==="dashboard"){
-
-        const user =
-          localStorage.getItem(
-            "syntraUser"
-          ) || "guest@syntra.ai";
-
-        openDashboard(user);
-
-      }
-
-      if(action==="platform"){
-
-        document
-          .getElementById("platform")
-          .scrollIntoView({
-            behavior:"smooth"
-          });
-
-      }
-
-      if(action==="login"){
-        openAuth(false);
-      }
-
-      if(action==="start"){
-        openAuth(true);
-      }
-
-    };
-
-  });
-
-
-/* ==========================================
-   COMMAND SEARCH
-========================================== */
-
-commandInput.addEventListener(
-  "input",
-  ()=>{
-
-    const query =
-      commandInput.value.toLowerCase();
-
-    document
-      .querySelectorAll(".command-item")
-      .forEach(item=>{
-
-        item.style.display =
-          item.textContent
-            .toLowerCase()
-            .includes(query)
-          ? "block"
-          : "none";
-
-      });
-
-  }
-);
-
-
-/* ==========================================
-   CARD TILT
-========================================== */
-
-document
-  .querySelectorAll(".cap-card")
-  .forEach(card=>{
-
-    card.addEventListener(
-      "mousemove",
-      e=>{
-
-        const rect =
-          card.getBoundingClientRect();
-
-        const x =
-          e.clientX-rect.left;
-
-        const y =
-          e.clientY-rect.top;
-
-        const rx =
-          ((y/rect.height)-.5)*-5;
-
-        const ry =
-          ((x/rect.width)-.5)*5;
-
-        card.style.transform=
-          `perspective(700px)
-           rotateX(${rx}deg)
-           rotateY(${ry}deg)
-           translateY(-7px)`;
-
-      }
-    );
-
-    card.addEventListener(
-      "mouseleave",
-      ()=>{
-
-        card.style.transform="";
-
-      }
-    );
-
-  });
-
-
-/* ==========================================
-   SMOOTH INTERNAL LINKS
-========================================== */
-
-document
-  .querySelectorAll('a[href^="#"]')
-  .forEach(link=>{
-
-    link.addEventListener(
-      "click",
-      e=>{
-
-        const target =
-          document.querySelector(
-            link.getAttribute("href")
-          );
-
-        if(target){
-
-          e.preventDefault();
-
-          target.scrollIntoView({
-            behavior:"smooth"
-          });
-
-        }
-
-      }
-    );
-
-  });
 
 </script>
 
 </body>
 </html>
+```
