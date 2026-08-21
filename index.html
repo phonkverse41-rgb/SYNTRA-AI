@@ -1,0 +1,3036 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#05070a">
+<title>NEXUS // AI — Intelligence, Engineered.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#05070a;
+  --panel:#0a0e13;
+  --panel2:#0d1218;
+  --line:rgba(255,255,255,.08);
+  --text:#eef4ff;
+  --muted:#718096;
+  --cyan:#4de8ff;
+  --blue:#5c7cff;
+  --purple:#a66cff;
+  --green:#54f0a4;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* =========================
+   GLOBAL BACKGROUND
+========================= */
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-5;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(77,232,255,.08),transparent 28%),
+    radial-gradient(circle at 85% 35%,rgba(166,108,255,.07),transparent 28%),
+    radial-gradient(circle at 50% 90%,rgba(92,124,255,.06),transparent 30%);
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:100;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#05070a;
+  display:grid;
+  place-items:center;
+  transition:.7s ease;
+}
+
+.loader.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.loader-inner{
+  width:280px;
+}
+
+.loader-brand{
+  font-family:"Space Grotesk";
+  font-size:25px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-align:center;
+}
+
+.loader-brand span{
+  color:var(--cyan);
+}
+
+.loader-status{
+  margin-top:35px;
+  display:flex;
+  justify-content:space-between;
+  color:#536070;
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.loader-bar{
+  height:2px;
+  background:#151b23;
+  margin-top:12px;
+  overflow:hidden;
+}
+
+.loader-bar i{
+  display:block;
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+  animation:loader 1.8s forwards;
+}
+
+@keyframes loader{
+  to{width:100%}
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:76px;
+  padding:0 5vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:900;
+  transition:.35s;
+}
+
+.nav.scrolled{
+  background:rgba(5,7,10,.78);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:"Space Grotesk";
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+
+.logo-mark{
+  width:28px;
+  height:28px;
+  border:1px solid var(--cyan);
+  border-radius:8px;
+  position:relative;
+  transform:rotate(45deg);
+}
+
+.logo-mark:before,
+.logo-mark:after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid var(--blue);
+  border-radius:4px;
+}
+
+.logo-mark:after{
+  inset:10px;
+  border-color:var(--purple);
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
+  color:#7f8b9d;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:.25s;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav-login{
+  color:#7d8999;
+  font-size:10px;
+  padding:11px 15px;
+}
+
+.nav-cta{
+  padding:11px 17px;
+  border:1px solid rgba(77,232,255,.5);
+  background:rgba(77,232,255,.07);
+  color:var(--cyan);
+  font-size:9px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  transition:.25s;
+}
+
+.nav-cta:hover{
+  background:var(--cyan);
+  color:#031014;
+  box-shadow:0 0 30px rgba(77,232,255,.2);
+}
+
+.menu{
+  display:none;
+  border:1px solid var(--line);
+  background:none;
+  color:#fff;
+  width:42px;
+  height:42px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+#neuralCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:linear-gradient(to bottom,black,transparent);
+}
+
+.hero-content{
+  width:100%;
+  position:relative;
+  z-index:5;
+  padding:150px 7vw 80px;
+}
+
+.system-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#6d7c8e;
+  font-size:9px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.system-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px var(--green);
+}
+
+.hero h1{
+  max-width:1000px;
+  margin-top:25px;
+  font-family:"Space Grotesk";
+  font-size:clamp(60px,9vw,145px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  font-weight:600;
+}
+
+.hero h1 .gradient{
+  background:linear-gradient(
+    100deg,
+    #fff 10%,
+    var(--cyan) 48%,
+    var(--purple) 85%
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero-copy{
+  max-width:560px;
+  margin-top:35px;
+  color:#778497;
+  font-size:14px;
+  line-height:1.9;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  margin-top:35px;
+}
+
+.btn{
+  min-height:50px;
+  padding:0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-size:9px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:#eafcff;
+  color:#061015;
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 40px rgba(77,232,255,.2);
+}
+
+.btn-secondary{
+  border:1px solid var(--line);
+  color:#a3afbe;
+  background:rgba(255,255,255,.025);
+}
+
+.btn-secondary:hover{
+  border-color:rgba(77,232,255,.4);
+  color:#fff;
+}
+
+.hero-terminal{
+  position:absolute;
+  right:6vw;
+  bottom:11vh;
+  width:330px;
+  z-index:4;
+  border:1px solid var(--line);
+  background:rgba(7,11,15,.72);
+  backdrop-filter:blur(18px);
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.terminal-head{
+  height:38px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:0 14px;
+  border-bottom:1px solid var(--line);
+}
+
+.term-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#3e4a58;
+}
+
+.terminal-title{
+  margin-left:auto;
+  color:#596676;
+  font-size:8px;
+  letter-spacing:.14em;
+}
+
+.terminal-body{
+  padding:17px;
+  font-family:monospace;
+  font-size:9px;
+  line-height:2;
+  color:#667688;
+}
+
+.terminal-body .cyan{color:var(--cyan)}
+.terminal-body .green{color:var(--green)}
+.terminal-body .purple{color:var(--purple)}
+
+.scroll-indicator{
+  position:absolute;
+  left:7vw;
+  bottom:28px;
+  color:#46515f;
+  font-size:8px;
+  letter-spacing:.2em;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+  padding:130px 7vw;
+  position:relative;
+}
+
+.section-kicker{
+  color:#536274;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+.section-kicker span{
+  color:var(--cyan);
+}
+
+.section-title{
+  margin-top:18px;
+  font-family:"Space Grotesk";
+  font-size:clamp(45px,6vw,90px);
+  line-height:.94;
+  letter-spacing:-.06em;
+  font-weight:500;
+}
+
+.section-title em{
+  font-style:normal;
+  color:#66758a;
+}
+
+/* =========================
+   METRICS
+========================= */
+
+.metrics{
+  padding-top:35px;
+  padding-bottom:35px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.metric{
+  padding:25px 35px;
+  border-right:1px solid var(--line);
+}
+
+.metric:last-child{
+  border-right:0;
+}
+
+.metric-number{
+  font-family:"Space Grotesk";
+  font-size:34px;
+  font-weight:500;
+}
+
+.metric-number span{
+  color:var(--cyan);
+}
+
+.metric-label{
+  margin-top:8px;
+  color:#536172;
+  font-size:8px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+/* =========================
+   INTELLIGENCE
+========================= */
+
+.intelligence{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:100px;
+  align-items:center;
+}
+
+.intro-copy{
+  margin-top:30px;
+  max-width:430px;
+  color:#697789;
+  font-size:13px;
+  line-height:2;
+}
+
+.core-wrap{
+  min-height:520px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(circle at center,rgba(77,232,255,.08),transparent 38%),
+    #080c11;
+  position:relative;
+  overflow:hidden;
+}
+
+.core-grid{
+  position:absolute;
+  inset:0;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(77,232,255,.15) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(77,232,255,.15) 1px,transparent 1px);
+  background-size:45px 45px;
+  transform:perspective(500px) rotateX(60deg) scale(1.7);
+  transform-origin:center bottom;
+}
+
+.ai-core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:170px;
+  height:170px;
+  transform:translate(-50%,-50%);
+}
+
+.core-sphere{
+  position:absolute;
+  inset:35px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 35% 30%,#e7ffff,#55eaff 15%,#536fff 48%,#28154e 80%);
+  box-shadow:
+    0 0 35px rgba(77,232,255,.5),
+    0 0 100px rgba(92,124,255,.3);
+  animation:corePulse 3s ease-in-out infinite;
+}
+
+@keyframes corePulse{
+  0%,100%{transform:scale(.94)}
+  50%{transform:scale(1.06)}
+}
+
+.core-ring{
+  position:absolute;
+  inset:5px;
+  border:1px solid rgba(77,232,255,.45);
+  border-radius:50%;
+  animation:spin 8s linear infinite;
+}
+
+.core-ring:nth-child(2){
+  inset:-18px;
+  border-color:rgba(166,108,255,.3);
+  animation-duration:12s;
+  animation-direction:reverse;
+}
+
+.core-ring:nth-child(3){
+  inset:-45px;
+  border-color:rgba(77,232,255,.12);
+  animation-duration:18s;
+}
+
+.core-ring:after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--cyan);
+  box-shadow:0 0 15px var(--cyan);
+  top:8px;
+  left:50%;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.core-label{
+  position:absolute;
+  bottom:25px;
+  left:25px;
+  color:#526173;
+  font-size:8px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.core-status{
+  position:absolute;
+  top:25px;
+  right:25px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--green);
+  font-size:8px;
+  letter-spacing:.12em;
+}
+
+/* =========================
+   PLATFORM
+========================= */
+
+.platform{
+  background:#070a0e;
+}
+
+.platform-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:55px;
+}
+
+.platform-head p{
+  max-width:370px;
+  color:#687687;
+  font-size:12px;
+  line-height:1.9;
+}
+
+.platform-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.platform-card{
+  min-height:340px;
+  border:1px solid var(--line);
+  background:#090d12;
+  padding:30px;
+  position:relative;
+  overflow:hidden;
+  transition:.35s;
+}
+
+.platform-card:hover{
+  border-color:rgba(77,232,255,.28);
+  transform:translateY(-6px);
+}
+
+.platform-card:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  background:rgba(77,232,255,.04);
+  right:-70px;
+  bottom:-70px;
+  filter:blur(10px);
+}
+
+.card-index{
+  color:#344151;
+  font-family:monospace;
+  font-size:10px;
+}
+
+.card-icon{
+  width:48px;
+  height:48px;
+  margin-top:55px;
+  border:1px solid rgba(77,232,255,.25);
+  display:grid;
+  place-items:center;
+  color:var(--cyan);
+  background:rgba(77,232,255,.04);
+}
+
+.platform-card h3{
+  margin-top:25px;
+  font-family:"Space Grotesk";
+  font-size:22px;
+  font-weight:500;
+}
+
+.platform-card p{
+  margin-top:12px;
+  color:#617083;
+  font-size:11px;
+  line-height:1.8;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-section{
+  background:
+    radial-gradient(circle at 50% 20%,rgba(92,124,255,.07),transparent 35%),
+    #05070a;
+}
+
+.dashboard{
+  margin-top:60px;
+  border:1px solid var(--line);
+  background:#080c11;
+  box-shadow:0 35px 100px rgba(0,0,0,.35);
+}
+
+.dash-top{
+  height:54px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  gap:12px;
+}
+
+.dash-brand{
+  font-family:"Space Grotesk";
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.1em;
+}
+
+.dash-pill{
+  margin-left:auto;
+  color:var(--green);
+  border:1px solid rgba(84,240,164,.2);
+  background:rgba(84,240,164,.04);
+  padding:7px 10px;
+  font-size:7px;
+  letter-spacing:.12em;
+}
+
+.dash-body{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  min-height:530px;
+}
+
+.dash-side{
+  border-right:1px solid var(--line);
+  padding:18px 12px;
+}
+
+.side-item{
+  padding:12px 10px;
+  margin-bottom:4px;
+  color:#596777;
+  font-size:9px;
+  letter-spacing:.06em;
+  cursor:pointer;
+}
+
+.side-item.active,
+.side-item:hover{
+  color:#fff;
+  background:rgba(77,232,255,.06);
+}
+
+.dash-main{
+  padding:25px;
+}
+
+.dash-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.dash-heading h3{
+  font-family:"Space Grotesk";
+  font-size:20px;
+  font-weight:500;
+}
+
+.live{
+  color:#687688;
+  font-size:8px;
+}
+
+.live b{
+  color:var(--green);
+}
+
+.dash-stats{
+  margin-top:25px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.dash-stat{
+  border:1px solid var(--line);
+  padding:17px;
+  background:#090d12;
+}
+
+.dash-stat small{
+  color:#536172;
+  font-size:7px;
+  letter-spacing:.1em;
+}
+
+.dash-stat strong{
+  display:block;
+  margin-top:10px;
+  font-family:"Space Grotesk";
+  font-size:24px;
+}
+
+.chart{
+  height:250px;
+  margin-top:10px;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+
+.chart svg{
+  width:100%;
+  height:100%;
+}
+
+.activity{
+  margin-top:10px;
+  border:1px solid var(--line);
+}
+
+.activity-row{
+  display:grid;
+  grid-template-columns:1fr 100px 80px;
+  padding:13px 15px;
+  border-bottom:1px solid var(--line);
+  color:#637183;
+  font-size:8px;
+}
+
+.activity-row:last-child{
+  border-bottom:0;
+}
+
+.activity-row b{
+  color:#9ba8b8;
+  font-weight:500;
+}
+
+.status{
+  color:var(--green);
+}
+
+/* =========================
+   WORKFLOW
+========================= */
+
+.workflow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:90px;
+}
+
+.workflow-list{
+  margin-top:45px;
+}
+
+.workflow-step{
+  display:grid;
+  grid-template-columns:50px 1fr;
+  gap:20px;
+  padding:25px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.step-number{
+  color:var(--cyan);
+  font-family:monospace;
+  font-size:10px;
+}
+
+.workflow-step h3{
+  font-family:"Space Grotesk";
+  font-size:17px;
+  font-weight:500;
+}
+
+.workflow-step p{
+  margin-top:8px;
+  color:#617083;
+  font-size:10px;
+  line-height:1.8;
+}
+
+.command{
+  border:1px solid var(--line);
+  background:#080c11;
+  min-height:470px;
+  padding:20px;
+  font-family:monospace;
+  position:relative;
+}
+
+.command-top{
+  display:flex;
+  justify-content:space-between;
+  color:#506071;
+  font-size:8px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+}
+
+.command-output{
+  margin-top:25px;
+  color:#718095;
+  font-size:9px;
+  line-height:2;
+}
+
+.command-output .cyan{color:var(--cyan)}
+.command-output .green{color:var(--green)}
+.command-output .purple{color:var(--purple)}
+
+.command-input{
+  position:absolute;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  display:flex;
+  border:1px solid var(--line);
+}
+
+.command-input input{
+  flex:1;
+  background:none;
+  border:0;
+  outline:0;
+  padding:13px;
+  color:#fff;
+  font-family:monospace;
+  font-size:9px;
+}
+
+.command-input button{
+  width:50px;
+  border:0;
+  border-left:1px solid var(--line);
+  background:rgba(77,232,255,.06);
+  color:var(--cyan);
+}
+
+/* =========================
+   MODELS
+========================= */
+
+.models{
+  background:#070a0e;
+}
+
+.model-grid{
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.model{
+  border:1px solid var(--line);
+  padding:28px;
+  background:#090d12;
+  transition:.3s;
+}
+
+.model:hover{
+  border-color:rgba(166,108,255,.35);
+}
+
+.model-top{
+  display:flex;
+  justify-content:space-between;
+}
+
+.model-name{
+  font-family:"Space Grotesk";
+  font-size:18px;
+}
+
+.model-version{
+  color:#5b697a;
+  font-family:monospace;
+  font-size:8px;
+}
+
+.model-desc{
+  margin-top:25px;
+  color:#627083;
+  font-size:10px;
+  line-height:1.9;
+}
+
+.model-bars{
+  margin-top:30px;
+}
+
+.bar{
+  margin-top:13px;
+}
+
+.bar-head{
+  display:flex;
+  justify-content:space-between;
+  color:#687688;
+  font-size:7px;
+  letter-spacing:.08em;
+}
+
+.bar-track{
+  height:3px;
+  margin-top:6px;
+  background:#151b23;
+}
+
+.bar-track i{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--cyan),var(--purple));
+}
+
+/* =========================
+   USE CASES
+========================= */
+
+.usecases{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:100px;
+}
+
+.use-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.use{
+  min-height:170px;
+  border:1px solid var(--line);
+  padding:24px;
+  background:#080c11;
+  transition:.3s;
+}
+
+.use:hover{
+  transform:translateY(-4px);
+  border-color:rgba(77,232,255,.22);
+}
+
+.use-number{
+  color:#364454;
+  font-family:monospace;
+  font-size:8px;
+}
+
+.use h3{
+  margin-top:35px;
+  font-family:"Space Grotesk";
+  font-size:17px;
+  font-weight:500;
+}
+
+.use p{
+  margin-top:8px;
+  color:#5e6d7e;
+  font-size:9px;
+  line-height:1.7;
+}
+
+/* =========================
+   PRICING
+========================= */
+
+.pricing{
+  background:
+    radial-gradient(circle at 50% 0,rgba(77,232,255,.06),transparent 35%),
+    #05070a;
+}
+
+.price-grid{
+  margin-top:60px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.price-card{
+  border:1px solid var(--line);
+  padding:32px;
+  background:#080c11;
+}
+
+.price-card.featured{
+  border-color:rgba(77,232,255,.45);
+  box-shadow:0 0 60px rgba(77,232,255,.05);
+}
+
+.price-tag{
+  color:#596879;
+  font-size:8px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.price-card h3{
+  margin-top:20px;
+  font-family:"Space Grotesk";
+  font-size:22px;
+}
+
+.price{
+  margin-top:20px;
+  font-family:"Space Grotesk";
+  font-size:42px;
+}
+
+.price small{
+  color:#5c6a7a;
+  font-size:10px;
+}
+
+.features{
+  margin-top:30px;
+  border-top:1px solid var(--line);
+}
+
+.feature{
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+  color:#697788;
+  font-size:9px;
+}
+
+.feature:before{
+  content:"✓";
+  color:var(--cyan);
+  margin-right:10px;
+}
+
+.price-button{
+  width:100%;
+  height:48px;
+  margin-top:25px;
+  border:1px solid var(--line);
+  background:none;
+  color:#a6b2c0;
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+
+.featured .price-button{
+  background:var(--cyan);
+  color:#041015;
+  border-color:var(--cyan);
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+  text-align:center;
+  padding-top:170px;
+  padding-bottom:170px;
+}
+
+.cta .section-title{
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.cta p{
+  max-width:500px;
+  margin:30px auto;
+  color:#657386;
+  font-size:12px;
+  line-height:1.9;
+}
+
+.cta-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:45px 7vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:#475363;
+  font-size:8px;
+  letter-spacing:.12em;
+}
+
+.footer-logo{
+  color:#dbe5f2;
+  font-family:"Space Grotesk";
+  font-size:15px;
+  font-weight:600;
+}
+
+.footer-links{
+  display:flex;
+  gap:20px;
+}
+
+.footer-links a:hover{
+  color:#fff;
+}
+
+/* =========================
+   COMMAND MODAL
+========================= */
+
+.command-modal{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  place-items:center;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(15px);
+  padding:20px;
+}
+
+.command-modal.open{
+  display:grid;
+}
+
+.modal-box{
+  width:min(700px,100%);
+  border:1px solid rgba(77,232,255,.2);
+  background:#080c11;
+  box-shadow:0 40px 100px rgba(0,0,0,.6);
+}
+
+.modal-head{
+  height:55px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+}
+
+.modal-head span{
+  color:#718096;
+  font-size:9px;
+  letter-spacing:.12em;
+}
+
+.modal-close{
+  width:32px;
+  height:32px;
+  border:1px solid var(--line);
+  background:none;
+  color:#8c99a9;
+}
+
+.modal-content{
+  padding:25px;
+}
+
+.modal-content textarea{
+  width:100%;
+  min-height:180px;
+  resize:vertical;
+  background:#05070a;
+  border:1px solid var(--line);
+  outline:none;
+  color:#dbe6f5;
+  padding:15px;
+  font-family:monospace;
+  font-size:10px;
+}
+
+.modal-content textarea:focus{
+  border-color:rgba(77,232,255,.35);
+}
+
+.modal-run{
+  margin-top:12px;
+  width:100%;
+  height:48px;
+  border:0;
+  background:var(--cyan);
+  color:#041015;
+  font-size:8px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.modal-result{
+  display:none;
+  margin-top:15px;
+  border:1px solid rgba(84,240,164,.15);
+  background:rgba(84,240,164,.03);
+  padding:15px;
+  color:#6d7e8f;
+  font-family:monospace;
+  font-size:9px;
+  line-height:1.8;
+}
+
+.modal-result.show{
+  display:block;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1050px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .menu{
+    display:block;
+  }
+
+  .nav-actions .nav-login,
+  .nav-actions .nav-cta{
+    display:none;
+  }
+
+  .hero-terminal{
+    right:5vw;
+    width:290px;
+  }
+
+  .intelligence,
+  .workflow,
+  .usecases{
+    grid-template-columns:1fr;
+    gap:55px;
+  }
+
+  .platform-grid,
+  .model-grid,
+  .price-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .metrics{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .metric:nth-child(2){
+    border-right:0;
+  }
+}
+
+@media(max-width:700px){
+
+  .nav{
+    height:65px;
+    padding:0 5vw;
+  }
+
+  .hero-content{
+    padding:125px 6vw 100px;
+  }
+
+  .hero h1{
+    font-size:62px;
+  }
+
+  .hero-copy{
+    font-size:12px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .hero-terminal{
+    display:none;
+  }
+
+  .scroll-indicator{
+    display:none;
+  }
+
+  .section{
+    padding:95px 5vw;
+  }
+
+  .section-title{
+    font-size:48px;
+  }
+
+  .metrics{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .metric{
+    padding:20px 15px;
+  }
+
+  .metric-number{
+    font-size:27px;
+  }
+
+  .core-wrap{
+    min-height:400px;
+  }
+
+  .platform-grid,
+  .model-grid,
+  .price-grid{
+    grid-template-columns:1fr;
+  }
+
+  .use-grid{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard{
+    overflow:hidden;
+  }
+
+  .dash-body{
+    grid-template-columns:1fr;
+  }
+
+  .dash-side{
+    display:flex;
+    overflow-x:auto;
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .side-item{
+    white-space:nowrap;
+  }
+
+  .dash-stats{
+    grid-template-columns:1fr;
+  }
+
+  .activity-row{
+    grid-template-columns:1fr 75px 60px;
+  }
+
+  .workflow{
+    gap:45px;
+  }
+
+  .cta{
+    padding-top:110px;
+    padding-bottom:110px;
+  }
+
+  .cta-buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  footer{
+    flex-direction:column;
+    gap:20px;
+    text-align:center;
+  }
+
+  .footer-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+
+/* =========================
+   MOBILE NAV PANEL
+========================= */
+
+.mobile-panel{
+  position:fixed;
+  top:65px;
+  left:0;
+  width:100%;
+  background:rgba(5,7,10,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px);
+  z-index:850;
+  display:none;
+  padding:15px 5vw 25px;
+}
+
+.mobile-panel.open{
+  display:block;
+}
+
+.mobile-panel a{
+  display:block;
+  padding:15px 5px;
+  color:#7d8b9c;
+  font-size:10px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  border-bottom:1px solid var(--line);
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-brand">NEXUS <span>// AI</span></div>
+    <div class="loader-status">
+      <span>INITIALIZING</span>
+      <span id="loadPercent">00%</span>
+    </div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+
+  <a href="#home" class="logo">
+    <div class="logo-mark"></div>
+    NEXUS
+  </a>
+
+  <div class="nav-links">
+    <a href="#platform">Platform</a>
+    <a href="#intelligence">Intelligence</a>
+    <a href="#dashboard">Console</a>
+    <a href="#models">Models</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+
+  <div class="nav-actions">
+    <a class="nav-login" href="#console">Log in</a>
+    <a class="nav-cta" href="#start">Start building</a>
+  </div>
+
+  <button class="menu" id="menu">☰</button>
+
+</nav>
+
+<div class="mobile-panel" id="mobilePanel">
+  <a href="#platform">Platform</a>
+  <a href="#intelligence">Intelligence</a>
+  <a href="#dashboard">Console</a>
+  <a href="#models">Models</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#start">Start building</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <canvas id="neuralCanvas"></canvas>
+
+  <div class="hero-grid"></div>
+
+  <div class="hero-content reveal">
+
+    <div class="system-label">
+      <span class="system-dot"></span>
+      NEXUS INTELLIGENCE SYSTEM / ONLINE
+    </div>
+
+    <h1>
+      Intelligence<br>
+      <span class="gradient">without limits.</span>
+    </h1>
+
+    <p class="hero-copy">
+      NEXUS is an AI infrastructure platform built for teams
+      that want to turn models, data and automation into
+      intelligent products — faster.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#start" class="btn btn-primary">
+        Build with NEXUS →
+      </a>
+
+      <a href="#dashboard" class="btn btn-secondary">
+        Explore console
+      </a>
+    </div>
+
+  </div>
+
+  <div class="hero-terminal">
+
+    <div class="terminal-head">
+      <span class="term-dot"></span>
+      <span class="term-dot"></span>
+      <span class="term-dot"></span>
+      <span class="terminal-title">NEXUS CORE</span>
+    </div>
+
+    <div class="terminal-body">
+      <div><span class="cyan">nexus@core</span>:~$ initialize</div>
+      <div>loading neural fabric...</div>
+      <div><span class="green">✓</span> inference engine online</div>
+      <div><span class="green">✓</span> memory layer online</div>
+      <div><span class="green">✓</span> agent runtime online</div>
+      <div><span class="purple">→</span> intelligence ready</div>
+      <br>
+      <div><span class="cyan">STATUS:</span> operational</div>
+      <div>latency: 42ms</div>
+      <div>models: 24</div>
+    </div>
+
+  </div>
+
+  <div class="scroll-indicator">
+    SCROLL TO EXPLORE ↓
+  </div>
+
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+
+  <div class="metric reveal">
+    <div class="metric-number">42<span>ms</span></div>
+    <div class="metric-label">Median inference</div>
+  </div>
+
+  <div class="metric reveal">
+    <div class="metric-number">99.9<span>%</span></div>
+    <div class="metric-label">Infrastructure uptime</div>
+  </div>
+
+  <div class="metric reveal">
+    <div class="metric-number">24<span>+</span></div>
+    <div class="metric-label">AI model families</div>
+  </div>
+
+  <div class="metric reveal">
+    <div class="metric-number">∞</div>
+    <div class="metric-label">Possibilities</div>
+  </div>
+
+</section>
+
+<!-- INTELLIGENCE -->
+<section class="section intelligence" id="intelligence">
+
+  <div class="reveal">
+
+    <div class="section-kicker">
+      <span>01</span> / INTELLIGENCE CORE
+    </div>
+
+    <h2 class="section-title">
+      Your AI stack.<br>
+      <em>Reimagined.</em>
+    </h2>
+
+    <p class="intro-copy">
+      NEXUS connects models, memory, agents and data into
+      one intelligent runtime. Build systems that understand
+      context, execute tasks and continuously improve.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#platform" class="btn btn-secondary">
+        Explore architecture →
+      </a>
+    </div>
+
+  </div>
+
+  <div class="core-wrap reveal">
+
+    <div class="core-grid"></div>
+
+    <div class="ai-core">
+
+      <div class="core-ring"></div>
+      <div class="core-ring"></div>
+      <div class="core-ring"></div>
+
+      <div class="core-sphere"></div>
+
+    </div>
+
+    <div class="core-status">
+      <span class="system-dot"></span>
+      CORE ACTIVE
+    </div>
+
+    <div class="core-label">
+      NEURAL CORE / NX-01
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PLATFORM -->
+<section class="section platform" id="platform">
+
+  <div class="platform-head reveal">
+
+    <div>
+      <div class="section-kicker">
+        <span>02</span> / PLATFORM
+      </div>
+
+      <h2 class="section-title">
+        One system.<br>
+        <em>Every layer.</em>
+      </h2>
+    </div>
+
+    <p>
+      Everything required to build, deploy and operate
+      production-grade AI applications.
+    </p>
+
+  </div>
+
+  <div class="platform-grid">
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 01</div>
+
+      <div class="card-icon">◈</div>
+
+      <h3>Model Engine</h3>
+
+      <p>
+        Route requests across high-performance models
+        while optimizing quality, latency and cost.
+      </p>
+    </article>
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 02</div>
+
+      <div class="card-icon">⌁</div>
+
+      <h3>Agent Runtime</h3>
+
+      <p>
+        Create autonomous agents capable of reasoning,
+        using tools and completing multi-step workflows.
+      </p>
+    </article>
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 03</div>
+
+      <div class="card-icon">◉</div>
+
+      <h3>Memory Fabric</h3>
+
+      <p>
+        Give your AI persistent context with semantic
+        memory, retrieval and intelligent knowledge graphs.
+      </p>
+    </article>
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 04</div>
+
+      <div class="card-icon">⌬</div>
+
+      <h3>Data Layer</h3>
+
+      <p>
+        Connect private knowledge and enterprise data
+        without rebuilding your existing infrastructure.
+      </p>
+    </article>
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 05</div>
+
+      <div class="card-icon">△</div>
+
+      <h3>Evaluation</h3>
+
+      <p>
+        Monitor model quality with evaluations, traces,
+        experiments and production observability.
+      </p>
+    </article>
+
+    <article class="platform-card reveal">
+      <div class="card-index">NX / 06</div>
+
+      <div class="card-icon">✦</div>
+
+      <h3>Automation</h3>
+
+      <p>
+        Transform repetitive operations into intelligent
+        workflows triggered by events, schedules or agents.
+      </p>
+    </article>
+
+  </div>
+
+</section>
+
+<!-- DASHBOARD -->
+<section class="section dashboard-section" id="dashboard">
+
+  <div class="reveal">
+
+    <div class="section-kicker">
+      <span>03</span> / NEXUS CONSOLE
+    </div>
+
+    <h2 class="section-title">
+      Intelligence,<br>
+      <em>visible.</em>
+    </h2>
+
+  </div>
+
+  <div class="dashboard reveal">
+
+    <div class="dash-top">
+
+      <div class="dash-brand">
+        NEXUS CONSOLE
+      </div>
+
+      <div class="dash-pill">
+        ● ALL SYSTEMS OPERATIONAL
+      </div>
+
+    </div>
+
+    <div class="dash-body">
+
+      <aside class="dash-side">
+
+        <div class="side-item active">Overview</div>
+        <div class="side-item">Models</div>
+        <div class="side-item">Agents</div>
+        <div class="side-item">Memory</div>
+        <div class="side-item">Analytics</div>
+
+      </aside>
+
+      <main class="dash-main">
+
+        <div class="dash-heading">
+          <h3>System Overview</h3>
+          <div class="live">
+            <b>LIVE</b> / Updated now
+          </div>
+        </div>
+
+        <div class="dash-stats">
+
+          <div class="dash-stat">
+            <small>REQUESTS</small>
+            <strong id="requests">128,420</strong>
+          </div>
+
+          <div class="dash-stat">
+            <small>LATENCY</small>
+            <strong id="latency">42ms</strong>
+          </div>
+
+          <div class="dash-stat">
+            <small>SUCCESS RATE</small>
+            <strong>99.97%</strong>
+          </div>
+
+        </div>
+
+        <div class="chart">
+
+          <svg viewBox="0 0 900 250" preserveAspectRatio="none">
+
+            <defs>
+              <linearGradient id="lineGrad" x1="0" x2="1">
+                <stop offset="0" stop-color="#4de8ff"/>
+                <stop offset="1" stop-color="#a66cff"/>
+              </linearGradient>
+            </defs>
+
+            <polyline
+              points="
+              0,190
+              60,175
+              120,184
+              180,150
+              240,160
+              300,120
+              360,142
+              420,105
+              480,125
+              540,90
+              600,112
+              660,70
+              720,88
+              780,55
+              840,68
+              900,30
+              "
+              fill="none"
+              stroke="url(#lineGrad)"
+              stroke-width="3"
+            />
+
+          </svg>
+
+        </div>
+
+        <div class="activity">
+
+          <div class="activity-row">
+            <b>Agent / Research-07</b>
+            <span>2.4s</span>
+            <span class="status">SUCCESS</span>
+          </div>
+
+          <div class="activity-row">
+            <b>Model / NX-Vision</b>
+            <span>0.8s</span>
+            <span class="status">SUCCESS</span>
+          </div>
+
+          <div class="activity-row">
+            <b>Agent / Support-12</b>
+            <span>1.7s</span>
+            <span class="status">SUCCESS</span>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- WORKFLOW -->
+<section class="section workflow">
+
+  <div class="reveal">
+
+    <div class="section-kicker">
+      <span>04</span> / WORKFLOW
+    </div>
+
+    <h2 class="section-title">
+      From idea<br>
+      <em>to intelligence.</em>
+    </h2>
+
+    <div class="workflow-list">
+
+      <div class="workflow-step">
+        <div class="step-number">01</div>
+        <div>
+          <h3>Connect your data</h3>
+          <p>
+            Bring documents, databases, APIs and internal
+            knowledge into one intelligent context layer.
+          </p>
+        </div>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-number">02</div>
+        <div>
+          <h3>Select intelligence</h3>
+          <p>
+            Choose the right models and configure routing,
+            reasoning and retrieval.
+          </p>
+        </div>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-number">03</div>
+        <div>
+          <h3>Deploy agents</h3>
+          <p>
+            Turn your workflows into autonomous systems
+            that can execute tasks and use tools.
+          </p>
+        </div>
+      </div>
+
+      <div class="workflow-step">
+        <div class="step-number">04</div>
+        <div>
+          <h3>Observe & improve</h3>
+          <p>
+            Measure quality, cost and performance from
+            a single production control layer.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="command reveal">
+
+    <div class="command-top">
+      <span>NEXUS / TERMINAL</span>
+      <span>SECURE CHANNEL</span>
+    </div>
+
+    <div class="command-output" id="commandOutput">
+      <div><span class="cyan">nexus@runtime</span>:~$ boot</div>
+      <div>loading agent runtime...</div>
+      <div><span class="green">✓</span> memory connected</div>
+      <div><span class="green">✓</span> model router connected</div>
+      <div><span class="green">✓</span> tools available</div>
+      <div><span class="purple">→</span> agent ready</div>
+      <br>
+      <div>Try a command below.</div>
+    </div>
+
+    <div class="command-input">
+      <input id="commandInput" placeholder="Ask NEXUS something...">
+      <button id="commandSend">→</button>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MODELS -->
+<section class="section models" id="models">
+
+  <div class="reveal">
+
+    <div class="section-kicker">
+      <span>05</span> / MODEL LAYER
+    </div>
+
+    <h2 class="section-title">
+      The right model.<br>
+      <em>Every time.</em>
+    </h2>
+
+  </div>
+
+  <div class="model-grid">
+
+    <article class="model reveal">
+
+      <div class="model-top">
+        <div class="model-name">NX Reason</div>
+        <div class="model-version">v4.2</div>
+      </div>
+
+      <p class="model-desc">
+        Deep reasoning model optimized for complex
+        analysis, planning and autonomous execution.
+      </p>
+
+      <div class="model-bars">
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>REASONING</span>
+            <span>96%</span>
+          </div>
+          <div class="bar-track"><i style="width:96%"></i></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>LATENCY</span>
+            <span>82%</span>
+          </div>
+          <div class="bar-track"><i style="width:82%"></i></div>
+        </div>
+
+      </div>
+
+    </article>
+
+    <article class="model reveal">
+
+      <div class="model-top">
+        <div class="model-name">NX Vision</div>
+        <div class="model-version">v3.8</div>
+      </div>
+
+      <p class="model-desc">
+        Multimodal intelligence for images, documents,
+        visual understanding and spatial reasoning.
+      </p>
+
+      <div class="model-bars">
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>VISION</span>
+            <span>94%</span>
+          </div>
+          <div class="bar-track"><i style="width:94%"></i></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>LATENCY</span>
+            <span>88%</span>
+          </div>
+          <div class="bar-track"><i style="width:88%"></i></div>
+        </div>
+
+      </div>
+
+    </article>
+
+    <article class="model reveal">
+
+      <div class="model-top">
+        <div class="model-name">NX Fast</div>
+        <div class="model-version">v5.1</div>
+      </div>
+
+      <p class="model-desc">
+        Ultra-low latency intelligence for production
+        applications, assistants and real-time agents.
+      </p>
+
+      <div class="model-bars">
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>SPEED</span>
+            <span>99%</span>
+          </div>
+          <div class="bar-track"><i style="width:99%"></i></div>
+        </div>
+
+        <div class="bar">
+          <div class="bar-head">
+            <span>EFFICIENCY</span>
+            <span>95%</span>
+          </div>
+          <div class="bar-track"><i style="width:95%"></i></div>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+<!-- USE CASES -->
+<section class="section usecases">
+
+  <div class="reveal">
+
+    <div class="section-kicker">
+      <span>06</span> / APPLICATIONS
+    </div>
+
+    <h2 class="section-title">
+      Intelligence<br>
+      <em>in action.</em>
+    </h2>
+
+    <p class="intro-copy">
+      Build AI systems that actually do work — from
+      customer operations to research, development,
+      analytics and autonomous workflows.
+    </p>
+
+  </div>
+
+  <div class="use-grid">
+
+    <article class="use reveal">
+      <div class="use-number">01 / OPERATIONS</div>
+      <h3>AI Operations</h3>
+      <p>Automate repetitive business workflows.</p>
+    </article>
+
+    <article class="use reveal">
+      <div class="use-number">02 / SUPPORT</div>
+      <h3>AI Support</h3>
+      <p>Build context-aware customer experiences.</p>
+    </article>
+
+    <article class="use reveal">
+      <div class="use-number">03 / RESEARCH</div>
+      <h3>AI Research</h3>
+      <p>Turn large information spaces into insights.</p>
+    </article>
+
+    <article class="use reveal">
+      <div class="use-number">04 / DEVELOPMENT</div>
+      <h3>AI Engineering</h3>
+      <p>Accelerate development with intelligent agents.</p>
+    </article>
+
+    <article class="use reveal">
+      <div class="use-number">05 / ANALYTICS</div>
+      <h3>AI Analytics</h3>
+      <p>Transform raw data into actionable intelligence.</p>
+    </article>
+
+    <article class="use reveal">
+      <div class="use-number">06 / CREATIVE</div>
+      <h3>AI Creative</h3>
+      <p>Generate, iterate and personalize at scale.</p>
+    </article>
+
+  </div>
+
+</section>
+
+<!-- PRICING -->
+<section class="section pricing" id="pricing">
+
+  <div style="text-align:center" class="reveal">
+
+    <div class="section-kicker">
+      <span>07</span> / ACCESS
+    </div>
+
+    <h2 class="section-title">
+      Start small.<br>
+      <em>Scale infinitely.</em>
+    </h2>
+
+  </div>
+
+  <div class="price-grid">
+
+    <article class="price-card reveal">
+
+      <div class="price-tag">For explorers</div>
+
+      <h3>Starter</h3>
+
+      <div class="price">
+        $0
+        <small>/ month</small>
+      </div>
+
+      <div class="features">
+        <div class="feature">5,000 AI requests</div>
+        <div class="feature">Core models</div>
+        <div class="feature">Basic analytics</div>
+        <div class="feature">Community support</div>
+      </div>
+
+      <button class="price-button" onclick="openConsole()">
+        Start free
+      </button>
+
+    </article>
+
+    <article class="price-card featured reveal">
+
+      <div class="price-tag">For builders</div>
+
+      <h3>Pro</h3>
+
+      <div class="price">
+        $49
+        <small>/ month</small>
+      </div>
+
+      <div class="features">
+        <div class="feature">100,000 AI requests</div>
+        <div class="feature">All model families</div>
+        <div class="feature">Agent runtime</div>
+        <div class="feature">Advanced analytics</div>
+        <div class="feature">Priority inference</div>
+      </div>
+
+      <button class="price-button" onclick="openConsole()">
+        Start building
+      </button>
+
+    </article>
+
+    <article class="price-card reveal">
+
+      <div class="price-tag">For organizations</div>
+
+      <h3>Enterprise</h3>
+
+      <div class="price">
+        Custom
+      </div>
+
+      <div class="features">
+        <div class="feature">Unlimited scale</div>
+        <div class="feature">Private deployment</div>
+        <div class="feature">Dedicated infrastructure</div>
+        <div class="feature">Security controls</div>
+        <div class="feature">Enterprise support</div>
+      </div>
+
+      <button class="price-button" onclick="openConsole()">
+        Talk to NEXUS
+      </button>
+
+    </article>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section class="section cta" id="start">
+
+  <div class="section-kicker reveal">
+    <span>08</span> / NEXT
+  </div>
+
+  <h2 class="section-title reveal">
+    Build what<br>
+    <span class="gradient">comes next.</span>
+  </h2>
+
+  <p class="reveal">
+    Your next product doesn't need more software.
+    It needs intelligence.
+  </p>
+
+  <div class="cta-buttons reveal">
+
+    <button class="btn btn-primary" onclick="openConsole()">
+      Launch NEXUS →
+    </button>
+
+    <a href="#platform" class="btn btn-secondary">
+      Explore platform
+    </a>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-logo">
+    NEXUS // AI
+  </div>
+
+  <div class="footer-links">
+    <a href="#platform">Platform</a>
+    <a href="#models">Models</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#start">Contact</a>
+  </div>
+
+  <div>
+    © 2026 NEXUS SYSTEMS
+  </div>
+
+</footer>
+
+<!-- COMMAND MODAL -->
+<div class="command-modal" id="commandModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <span>NEXUS / AI PLAYGROUND</span>
+      <button class="modal-close" onclick="closeConsole()">×</button>
+    </div>
+
+    <div class="modal-content">
+
+      <textarea id="promptBox"
+        placeholder="Describe what you want to build..."></textarea>
+
+      <button class="modal-run" onclick="runPrompt()">
+        Run intelligence →
+      </button>
+
+      <div class="modal-result" id="modalResult"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+   LOADER
+========================= */
+
+let percent = 0;
+
+const percentEl =
+  document.getElementById("loadPercent");
+
+const percentTimer =
+  setInterval(()=>{
+
+    percent += Math.floor(Math.random()*12)+5;
+
+    if(percent >= 100){
+      percent = 100;
+      clearInterval(percentTimer);
+    }
+
+    percentEl.textContent =
+      String(percent).padStart(2,"0")+"%";
+
+  },150);
+
+window.addEventListener("load",()=>{
+
+  setTimeout(()=>{
+
+    document
+      .getElementById("loader")
+      .classList.add("hide");
+
+  },1900);
+
+});
+
+
+/* =========================
+   NAV
+========================= */
+
+const nav =
+  document.getElementById("nav");
+
+window.addEventListener("scroll",()=>{
+
+  nav.classList.toggle(
+    "scrolled",
+    window.scrollY > 30
+  );
+
+});
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+const menu =
+  document.getElementById("menu");
+
+const mobilePanel =
+  document.getElementById("mobilePanel");
+
+menu.onclick=()=>{
+
+  mobilePanel.classList.toggle("open");
+
+};
+
+document
+.querySelectorAll(".mobile-panel a")
+.forEach(link=>{
+
+  link.onclick=()=>{
+    mobilePanel.classList.remove("open");
+  };
+
+});
+
+
+/* =========================
+   REAL CANVAS NEURAL NETWORK
+========================= */
+
+const canvas =
+  document.getElementById("neuralCanvas");
+
+const ctx =
+  canvas.getContext("2d");
+
+let width;
+let height;
+
+let nodes = [];
+
+let mouse = {
+  x:-9999,
+  y:-9999
+};
+
+function resizeCanvas(){
+
+  width =
+    canvas.width =
+    window.innerWidth *
+    Math.min(window.devicePixelRatio,1.5);
+
+  height =
+    canvas.height =
+    window.innerHeight *
+    Math.min(window.devicePixelRatio,1.5);
+
+  canvas.style.width =
+    window.innerWidth+"px";
+
+  canvas.style.height =
+    window.innerHeight+"px";
+
+  ctx.setTransform(
+    Math.min(window.devicePixelRatio,1.5),
+    0,0,
+    Math.min(window.devicePixelRatio,1.5),
+    0,0
+  );
+
+  width=window.innerWidth;
+  height=window.innerHeight;
+
+  createNodes();
+}
+
+function createNodes(){
+
+  nodes=[];
+
+  const amount =
+    window.innerWidth < 700
+    ? 35
+    : 75;
+
+  for(let i=0;i<amount;i++){
+
+    nodes.push({
+
+      x:Math.random()*width,
+
+      y:Math.random()*height,
+
+      vx:(Math.random()-.5)*.22,
+
+      vy:(Math.random()-.5)*.22,
+
+      r:Math.random()*1.5+.7
+
+    });
+
+  }
+
+}
+
+function drawNetwork(){
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+  for(const n of nodes){
+
+    n.x += n.vx;
+    n.y += n.vy;
+
+    if(n.x < 0 || n.x > width)
+      n.vx *= -1;
+
+    if(n.y < 0 || n.y > height)
+      n.vy *= -1;
+
+    const dx =
+      mouse.x-n.x;
+
+    const dy =
+      mouse.y-n.y;
+
+    const dist =
+      Math.sqrt(dx*dx+dy*dy);
+
+    if(dist < 180){
+
+      n.x -= dx/dist*.15;
+      n.y -= dy/dist*.15;
+
+    }
+
+  }
+
+  for(let i=0;i<nodes.length;i++){
+
+    for(let j=i+1;j<nodes.length;j++){
+
+      const a=nodes[i];
+      const b=nodes[j];
+
+      const dx=a.x-b.x;
+      const dy=a.y-b.y;
+
+      const dist=
+        Math.sqrt(dx*dx+dy*dy);
+
+      if(dist<145){
+
+        const alpha=
+          (1-dist/145)*.18;
+
+        ctx.beginPath();
+
+        ctx.strokeStyle=
+          `rgba(77,232,255,${alpha})`;
+
+        ctx.lineWidth=.6;
+
+        ctx.moveTo(a.x,a.y);
+        ctx.lineTo(b.x,b.y);
+        ctx.stroke();
+
+      }
+
+    }
+
+  }
+
+  for(const n of nodes){
+
+    ctx.beginPath();
+
+    ctx.fillStyle=
+      "rgba(77,232,255,.65)";
+
+    ctx.arc(
+      n.x,
+      n.y,
+      n.r,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fill();
+
+  }
+
+  requestAnimationFrame(drawNetwork);
+
+}
+
+window.addEventListener(
+  "mousemove",
+  e=>{
+    mouse.x=e.clientX;
+    mouse.y=e.clientY;
+  }
+);
+
+window.addEventListener(
+  "mouseleave",
+  ()=>{
+    mouse.x=-9999;
+    mouse.y=-9999;
+  }
+);
+
+resizeCanvas();
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+drawNetwork();
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+const revealObserver =
+  new IntersectionObserver(
+    entries=>{
+
+      entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+          entry.target
+            .classList
+            .add("visible");
+
+          revealObserver
+            .unobserve(entry.target);
+
+        }
+
+      });
+
+    },
+    {
+      threshold:.12
+    }
+  );
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+  revealObserver.observe(el);
+});
+
+
+/* =========================
+   DASHBOARD LIVE NUMBERS
+========================= */
+
+let requests=128420;
+
+setInterval(()=>{
+
+  requests +=
+    Math.floor(
+      Math.random()*35
+    );
+
+  document
+    .getElementById("requests")
+    .textContent=
+    requests.toLocaleString();
+
+  const latency =
+    38+
+    Math.floor(
+      Math.random()*13
+    );
+
+  document
+    .getElementById("latency")
+    .textContent=
+    latency+"ms";
+
+},1600);
+
+
+/* =========================
+   SIDE NAV INTERACTION
+========================= */
+
+document
+.querySelectorAll(".side-item")
+.forEach(item=>{
+
+  item.onclick=()=>{
+
+    document
+    .querySelectorAll(".side-item")
+    .forEach(x=>
+      x.classList.remove("active")
+    );
+
+    item.classList.add("active");
+
+  };
+
+});
+
+
+/* =========================
+   COMMAND CONSOLE
+========================= */
+
+const commandInput =
+  document.getElementById("commandInput");
+
+const commandSend =
+  document.getElementById("commandSend");
+
+const commandOutput =
+  document.getElementById("commandOutput");
+
+function runCommand(){
+
+  const value =
+    commandInput.value.trim();
+
+  if(!value) return;
+
+  const line =
+    document.createElement("div");
+
+  line.innerHTML=
+    `<span class="cyan">
+      nexus@runtime
+    </span>:~$ ${escapeHTML(value)}`;
+
+  commandOutput.appendChild(line);
+
+  setTimeout(()=>{
+
+    const response =
+      document.createElement("div");
+
+    response.innerHTML=
+      `<span class="green">✓</span>
+       NEXUS processed request.
+       Intelligence pipeline ready.`;
+
+    commandOutput.appendChild(response);
+
+    commandOutput.scrollTop =
+      commandOutput.scrollHeight;
+
+  },450);
+
+  commandInput.value="";
+
+}
+
+commandSend.onclick=
+  runCommand;
+
+commandInput.addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Enter")
+      runCommand();
+  }
+);
+
+
+/* =========================
+   CONSOLE MODAL
+========================= */
+
+const commandModal =
+  document.getElementById("commandModal");
+
+function openConsole(){
+
+  commandModal
+    .classList
+    .add("open");
+
+  setTimeout(()=>{
+    document
+      .getElementById("promptBox")
+      .focus();
+  },100);
+
+}
+
+function closeConsole(){
+
+  commandModal
+    .classList
+    .remove("open");
+
+}
+
+commandModal.onclick=e=>{
+
+  if(e.target===commandModal)
+    closeConsole();
+
+};
+
+document.addEventListener(
+  "keydown",
+  e=>{
+    if(e.key==="Escape")
+      closeConsole();
+  }
+);
+
+
+/* =========================
+   FAKE AI PLAYGROUND
+   FRONT-END DEMO
+========================= */
+
+function runPrompt(){
+
+  const prompt =
+    document
+      .getElementById("promptBox")
+      .value
+      .trim();
+
+  const result =
+    document
+      .getElementById("modalResult");
+
+  if(!prompt){
+
+    result.classList.add("show");
+
+    result.innerHTML=
+      "ERR / Enter an instruction first.";
+
+    return;
+
+  }
+
+  result.classList.add("show");
+
+  result.innerHTML=
+    `<span style="color:#4de8ff">
+      NEXUS // PROCESSING
+    </span><br><br>
+    Understanding request...<br>
+    Selecting intelligence layer...<br>
+    Building execution plan...<br>
+    <span style="color:#54f0a4">
+      ✓ Pipeline initialized successfully.
+    </span>`;
+
+}
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(str){
+
+  return str
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================
+   BUTTON FEEDBACK
+========================= */
+
+document
+.querySelectorAll(".price-button")
+.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+      button.textContent="OPENING CONSOLE...";
+      setTimeout(()=>{
+        button.textContent="OPEN NEXUS";
+      },900);
+    }
+  );
+
+});
+
+</script>
+
+</body>
+</html>
+```
